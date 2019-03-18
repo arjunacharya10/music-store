@@ -3,9 +3,18 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "auth0-js": "^9.10.0",
+    "axios": "^0.18.0",
+    "bootstrap": "^4.3.1",
+    "firebase": "^5.9.0",
     "react": "^16.8.4",
+    "react-bootstrap": "^1.0.0-beta.5",
     "react-dom": "^16.8.4",
-    "react-scripts": "2.1.8"
+    "react-firebaseui": "^3.1.2",
+    "react-native": "^0.59.1",
+    "react-scripts": "2.1.8",
+    "react-video-cover": "^1.2.2",
+    "tachyons": "^4.11.1"
   },
   "scripts": {
     "start": "react-scripts start",
