@@ -4,6 +4,8 @@ import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import MainMenu from './MainMenu';
 import 'tachyons';
 import './SignIn.css';
+import SigninForm from './SigninForm';
+import Register from './Register';
 
 import Home from '../video/home.mp4';
 
@@ -16,8 +18,23 @@ class SignIn extends Component {
 
   state={
     isSignedIn: false,
-    currentUser: null,
+    currentUser:{
+      name: null,
+      email: null,
+      avatar: null
+    },
+    currenRoute: 'signin'
   };
+
+  onRouteChange=(route)=>{
+      this.setState({currenRoute: route});
+      console.log(route);
+  }
+
+  onSignOut=()=>{
+    this.setState({currenRoute: 'signin'});
+    this.setState({isSignedIn: false});
+  }
 
 
   uiConfig = {
@@ -32,6 +49,16 @@ class SignIn extends Component {
     }
   };
 
+  updateSignedIn = (user)=>{
+    this.setState({isSignedIn: true});
+    this.setState({currentUser:{
+      name: user.name,
+      email: user.email,
+      avatar: user.avatar
+    }});
+    console.log(this.state.currentUser);
+  }
+
   
 
   componentDidMount=()=>{
@@ -39,7 +66,11 @@ class SignIn extends Component {
     firebase.auth().onAuthStateChanged(user =>{
       this.setState({isSignedIn: !!user});
       if(this.state.isSignedIn){
-        this.setState({currentUser: user});
+        this.setState({currentUser:{
+          name: user.displayName,
+          email: user.email,
+          avatar: user.photoURL
+        }});
 
       console.log(this.state.currentUser);
       }
@@ -48,58 +79,50 @@ class SignIn extends Component {
 
 
   render() {
-    return (
-      <div>
-        {
-          this.state.isSignedIn ?
-          <MainMenu currentUser = {this.setState.currentUser}/>
-          :
-          
-          <div className="ui container">
 
-                <div>
-                    <video autoPlay muted loop id="myVideo">
-                        <source src="./home.mp4" type="video/mp4"/>
-                    </video>
-                </div>
-                <div className="ui container" style={{position:'relative',color:'#f1f1f1',marginTop: '30px',maxWidth: '100px'}}>
- 
-                    <main class="pa4 black-80 ui">
-                        <form class="measure center">
-                        <fieldset id="sign_up" class="ba b--transparent ph0 mh0">
-                            <legend class="f4 fw6 ph0 mh0">Sign In</legend>
-                            <div class="mt3">
-                                <label class="db fw6 lh-copy f6" for="email-address">Email</label>
-                                <input class="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100" type="email" name="email-address"  id="email-address"/>
-                            </div>
-                            <div class="mv3">
-                                <label class="db fw6 lh-copy f6" for="password">Password</label>
-                                <input class="b pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100" type="password" name="password"  id="password"/>
-                            </div>
-                            <label class="pa0 ma0 lh-copy f6 pointer"><input type="checkbox"/> Remember me</label>
-                        </fieldset>
-                        <div class="">
-                            <input class="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib" type="submit" value="Sign in"/>
-                        </div>
-                        <div class="lh-copy mt3">
-                            <a href="#0" class="f6 link dim black db">Sign up</a>
-                            <a href="#0" class="f6 link dim black db">Forgot your password?</a>
-                        </div>
-                        </form>
 
-                            <h4 className="ui" style={{textAlign:'center'}}>OR</h4>
-                    </main>
 
-                    <StyledFirebaseAuth
-                        uiConfig={this.uiConfig}
-                        firebaseAuth = {firebase.auth()}
-                    />
-                
-                </div>
-            </div>
-        }
-      </div>
-    );
+    if(this.state.currenRoute==='signin')
+      {
+        return (
+        <div>
+          {
+            this.state.isSignedIn ?
+            <MainMenu currentUser = {this.state.currentUser} onSignOut={this.onSignOut}/>
+            :
+            
+            <div className="ui container">
+
+                  <div>
+                      <video autoPlay muted loop id="myVideo">
+                          <source src="./home.mp4" type="video/mp4"/>
+                      </video>
+                  </div>
+                  <div className="ui container" style={{position:'relative',color:'#f1f1f1',marginTop: '30px',maxWidth: '100px'}}>
+  
+                      <SigninForm onRouteChange = {this.onRouteChange} updateSignedIn={this.updateSignedIn}/>
+
+                      <StyledFirebaseAuth
+                          uiConfig={this.uiConfig}
+                          firebaseAuth = {firebase.auth()}
+                      />
+                  
+                  </div>
+              </div>
+          }
+        </div>
+      );
+    }
+    else if(this.state.currenRoute === 'register'){
+      return(
+        <Register onRouteChange={this.onRouteChange}/>
+      );
+    }
+    else{
+      return(
+        <div>Error!</div>
+      );
+    }
   }
 }
 

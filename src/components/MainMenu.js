@@ -12,7 +12,6 @@ class MainMenu extends React.Component{
 
     state={
         currentRoute: 'home',
-        curUser: firebase.auth().currentUser
     };
     onRouteChange = (route)=>{
         this.setState({currentRoute: route});
@@ -25,7 +24,7 @@ class MainMenu extends React.Component{
         {
             return(
                 <div>
-                    <SideNav onRouteChange={this.onRouteChange} curUser={this.state.curUser}/>
+                    <SideNav onRouteChange={this.onRouteChange} currentUser={this.props.currentUser} onSignOut={this.props.onSignOut}/>
                         <div className="main">
                             <Profile/>
                         </div>
@@ -38,7 +37,7 @@ class MainMenu extends React.Component{
         else if(this.state.currentRoute==='home'){
             return(
                 <div>
-                    <SideNav onRouteChange={this.onRouteChange} curUser={this.state.curUser}/>
+                    <SideNav onRouteChange={this.onRouteChange} onSignOut={this.props.onSignOut} currentUser={this.props.currentUser}/>
                         <div className="main">
                             <HomeScreen/>
                         </div>
