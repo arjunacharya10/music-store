@@ -16,7 +16,7 @@ class SignIn extends Component {
 
   state={
     isSignedIn: false,
-    currentUser: null
+    currentUser: null,
   };
 
 
@@ -31,6 +31,8 @@ class SignIn extends Component {
       signInSuccess: ()=> false
     }
   };
+
+  
 
   componentDidMount=()=>{
     
