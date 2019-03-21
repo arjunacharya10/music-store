@@ -14,7 +14,7 @@ const Album =({album})=>{
     {
             return(
             <a style={{color: 'white'}} href={album.external_urls.spotify}>
-                <div className='tc bg-black dib br3 pa3 ma2 grow bw2 shadow-5'>
+                <div className='tc  dib br3 pa3 ma2 grow'>
                 <img src={album.images.length?album.images[1].url:blank}  alt="robots"/>
                 <div>
                     <h2>{album.name.length>20?album.name.slice(0,17)+'...':album.name}</h2>

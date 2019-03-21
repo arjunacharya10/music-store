@@ -23,8 +23,8 @@ const Track =({track})=>{
     return(
 
         <a style={{color: 'white'}} href={track.external_urls.spotify}>
-            <div className='tc bg-black dib br3 pa3 ma2 grow bw2 shadow-5'>
-			<img src={track.album.images[1].url} alt="robots"/>
+            <div className='tc  dib br3 pa3 ma2'>
+			<img className="ui circular medium image grow" src={track.album.images[1].url} alt="robots"/>
 			<div>
 				<h2>{track.name.length>20?track.name.slice(0,17)+'...':track.name}</h2>
 				<p>{artList.length>20?artList.slice(0,17)+'...':artList}</p>
@@ -35,3 +35,5 @@ const Track =({track})=>{
 }
 
 export default Track;
+
+// bw2 shadow-5 dib br3 

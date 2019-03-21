@@ -8,8 +8,8 @@ const Artist =({artist})=>{
     {
             return(
             <a style={{color: 'white'}} href={artist.external_urls.spotify}>
-                <div className='tc bg-black dib br3 pa3 ma2 grow bw2 shadow-5'>
-                <img src={artist.images.length?artist.images[1].url:blank}  alt="robots"/>
+                <div className='tc  dib br3 pa3 ma2 grow'>
+                <img  src={artist.images.length?artist.images[1].url:blank}  alt="robots"/>
                 <div>
                     <h2>{artist.name.length>20?artist.name.slice(0,17)+'...':artist.name}</h2>
                     <p>Followers: {artist.followers.total}</p>

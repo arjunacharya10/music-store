@@ -11,6 +11,7 @@ const Albums = ({albums})=>{
         return(
             <div className="" style={{color:'white'}}>
             {albumCards}
+            <br/><br/><br/><br/><br/><br/><br/>
         </div>
         );
     }
