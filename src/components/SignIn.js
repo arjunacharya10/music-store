@@ -6,6 +6,7 @@ import 'tachyons';
 import './SignIn.css';
 import SigninForm from './SigninForm';
 import Register from './Register';
+import Spotify from './Spotify';
 
 import Home from '../video/home.mp4';
 
@@ -23,12 +24,20 @@ class SignIn extends Component {
       email: null,
       avatar: null
     },
-    currenRoute: 'signin'
+    currenRoute: 'signin',
+    spotifyAuth: false,
+    access_token: ''
   };
 
   onRouteChange=(route)=>{
       this.setState({currenRoute: route});
       console.log(route);
+  }
+
+  updateSpotAuth=(res)=>{
+    this.setState({access_token: res.access_token});
+    this.setState({spotifyAuth: true});
+    console.log(res);
   }
 
   onSignOut=()=>{
@@ -56,7 +65,6 @@ class SignIn extends Component {
       email: user.email,
       avatar: user.avatar
     }});
-    console.log(this.state.currentUser);
   }
 
   
@@ -71,8 +79,6 @@ class SignIn extends Component {
           email: user.email,
           avatar: user.photoURL
         }});
-
-      console.log(this.state.currentUser);
       }
     })
   }
@@ -87,8 +93,8 @@ class SignIn extends Component {
         return (
         <div>
           {
-            this.state.isSignedIn ?
-            <MainMenu currentUser = {this.state.currentUser} onSignOut={this.onSignOut}/>
+            this.state.isSignedIn && this.state.spotifyAuth ?
+            <MainMenu currentUser = {this.state.currentUser} onSignOut={this.onSignOut} access_token={this.state.access_token}/>
             :
             
             <div className="ui container">
@@ -106,7 +112,7 @@ class SignIn extends Component {
                           uiConfig={this.uiConfig}
                           firebaseAuth = {firebase.auth()}
                       />
-                  
+                      <Spotify updateSpotAuth={this.updateSpotAuth}/>
                   </div>
               </div>
           }

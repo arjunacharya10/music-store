@@ -12,7 +12,7 @@ const Profile = (props)=>{
                 <div className="ui grid">
                     <div className="ui row">
                         <div  className="four wide column">
-                        <img class="ui small circular image" src={firebase.auth().currentUser.photoURL}/>
+                        <img class="ui small circular image" src={props.currentUser.avatar}/>
                         </div>
                         <div className="four wide column">
                             <div>

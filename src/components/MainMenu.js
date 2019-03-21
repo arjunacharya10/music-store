@@ -7,14 +7,22 @@ import Profile from './Profile';
 import SideNav from './SideNav';
 import HomeScreen from './HomeScreen';
 import FooterBar from './FooterBar';
-
+import SearchList from './SearchList';
 class MainMenu extends React.Component{
 
     state={
         currentRoute: 'home',
+        access_token: '',
+        butClicked: false,
+        butColor: '#818181'
     };
     onRouteChange = (route)=>{
         this.setState({currentRoute: route});
+    }
+
+    componentDidMount(){
+        this.setState({access_token: this.props.access_token});
+        console.log(this.state.access_token);
     }
     
     
@@ -26,7 +34,7 @@ class MainMenu extends React.Component{
                 <div>
                     <SideNav onRouteChange={this.onRouteChange} currentUser={this.props.currentUser} onSignOut={this.props.onSignOut}/>
                         <div className="main">
-                            <Profile/>
+                            <Profile currentUser={this.props.currentUser}/>
                         </div>
                         <div class="footer">
                             <p>Footer</p>
@@ -35,6 +43,7 @@ class MainMenu extends React.Component{
             );
         }
         else if(this.state.currentRoute==='home'){
+            console.log(this.props.access_token);
             return(
                 <div>
                     <SideNav onRouteChange={this.onRouteChange} onSignOut={this.props.onSignOut} currentUser={this.props.currentUser}/>
@@ -47,6 +56,20 @@ class MainMenu extends React.Component{
                 </div>
             );
 
+        }
+        else if(this.state.currentRoute==='search')
+        {
+            return(
+                <div>
+                    <SideNav onRouteChange={this.onRouteChange} currentUser={this.props.currentUser} onSignOut={this.props.onSignOut}/>
+                        <div className="main">
+                            <SearchList currentUser={this.props.currentUser} access_token={this.state.access_token}/>
+                        </div>
+                        <div class="footer">
+                            <p>Footer</p>
+                        </div>
+                </div>
+            );
         }
         else{
             return(
