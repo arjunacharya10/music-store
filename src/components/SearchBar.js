@@ -22,7 +22,7 @@ class SearchBar extends React.Component{
                 <div className="field">
                         <div class="ui inverted transparent massive icon input">
                             <input 
-                                style={{color: 'white',marginLeft: '100px'}} 
+                                style={{color: 'white',marginLeft: '50px'}} 
                                 type="text" 
                                 placeholder="Start Typing..."
                                 value={this.state.term}

@@ -3,7 +3,7 @@ import React from 'react';
 class HomeScreen extends React.Component{
     render(){
         return(
-            <div>Home Screen!</div>
+            <div style={{color:'white'}}>Home Screen!</div>
         );
     }
 }
