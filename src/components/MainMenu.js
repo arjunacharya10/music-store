@@ -33,7 +33,7 @@ class MainMenu extends React.Component{
             return(
                 <div>
                     <SideNav onRouteChange={this.onRouteChange} currentUser={this.props.currentUser} onSignOut={this.props.onSignOut}/>
-                        <div className="main">
+                        <div className="main" style={{marginRight:'1000px'}}>
                             <Profile currentUser={this.props.currentUser}/>
                         </div>
                         <div class="footer">
@@ -47,7 +47,7 @@ class MainMenu extends React.Component{
             return(
                 <div>
                     <SideNav onRouteChange={this.onRouteChange} onSignOut={this.props.onSignOut} currentUser={this.props.currentUser}/>
-                        <div className="main">
+                        <div className="main" style={{marginRight:'1000px'}}>
                             <HomeScreen/>
                         </div>
                         <div class="footer">
@@ -62,7 +62,7 @@ class MainMenu extends React.Component{
             return(
                 <div>
                     <SideNav onRouteChange={this.onRouteChange} currentUser={this.props.currentUser} onSignOut={this.props.onSignOut}/>
-                        <div className="main">
+                        <div className="main" style={{marginRight:'1000px'}}>
                             <SearchList currentUser={this.props.currentUser} access_token={this.state.access_token}/>
                         </div>
                         <div class="footer">

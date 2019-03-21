@@ -1,20 +1,36 @@
 import React from 'react';
 import img from '../sym6.png'
 
-const Track =()=>{
-    return(
-        <div className="ui container">
-            <div className="ui segment">
-                <div className="ui item">
+const Track =({track})=>{
+    /*return(
+        <div className="ui">
+                <div style={{display: 'inline'}} className="ui item">
                 <div class="ui divider"></div>
                     <img class="ui middle aligned tiny image" src={img}/>
                     <span>
-                        <p>Title</p>
-                        <p>Artist Name</p>
+                        <span>&nbsp;&nbsp;&nbsp;Title</span><br/>
+                        <span>Artist Name</span>
                     </span>
                 </div>
-            </div>
         </div>
+    );*/
+    var artList="";
+    
+    track.artists.forEach(artist => {
+        artList+=artist.name+", ";
+    });
+
+    return(
+
+        <a style={{color: 'white'}} href={track.external_urls.spotify}>
+            <div className='tc bg-black dib br3 pa3 ma2 grow bw2 shadow-5'>
+			<img src={track.album.images[1].url} alt="robots"/>
+			<div>
+				<h2>{track.name.length>20?track.name.slice(0,17)+'...':track.name}</h2>
+				<p>{artList.length>20?artList.slice(0,17)+'...':artList}</p>
+			</div>
+		</div>
+        </a>
     );
 }
 

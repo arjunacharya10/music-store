@@ -31,7 +31,6 @@ class SignIn extends Component {
 
   onRouteChange=(route)=>{
       this.setState({currenRoute: route});
-      console.log(route);
   }
 
   updateSpotAuth=(res)=>{

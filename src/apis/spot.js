@@ -10,6 +10,6 @@ export default axios.create({
         Authorization: `Bearer ${KEY}`
     },*/
     params:{
-        limit: 10
+        limit: 30
     }
 });

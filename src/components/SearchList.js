@@ -14,8 +14,37 @@ class SearchList extends React.Component{
         currentRoute: '',
         albums: {},
         artists: {},
-        tracks: {}
+        tracks: {},
+        active:{
+            b1: true,
+            b2: false,
+            b3: false
+        }
     };
+
+    onTracksClicked=()=>{
+        this.setState({active:{
+            b1: true,
+            b2: false,
+            b3: false
+        }});
+    }
+
+    onArtistsClicked=()=>{
+        this.setState({active:{
+            b1: false,
+            b2: true,
+            b3: false
+        }});
+    }
+
+    onAlbumsClicked=()=>{
+        this.setState({active:{
+            b1: false,
+            b2: false,
+            b3: true
+        }});
+    }
 
     onSubmitForm=async (term)=>{
         await   Spotify.get('/search',{
@@ -30,9 +59,10 @@ class SearchList extends React.Component{
         })
         .then(res=>{
             const {data} = res;
-            this.setState({currentRoute: 'tracks'});
+            this.setState({active:{b1:true,b2:false,b3:false}});
             this.setState({artists: data.artists,albums: data.albums,tracks: data.tracks});
-            console.log(this.state)
+            this.setState({currentRoute: 'tracks'});
+            console.log(this.state);
         })
         .catch(err=>{
             console.log(err);
@@ -54,9 +84,13 @@ class SearchList extends React.Component{
                 <div className="ui">
                     <SearchBar onSubmitForm={this.onSubmitForm}/>
                     <div style={{color:'white',align: 'center'}} className="ui">
-                        <SearchMenu onRouteChange={this.onRouteChange}/>
+                        <div style={{content:'center'}}>
+                            <SearchMenu tc={this.onTracksClicked} alc={this.onAlbumsClicked} arc={this.onArtistsClicked} onRouteChange={this.onRouteChange} active={this.state.active}/>
+                        </div>    
                         <div className="ui">
-                            <Tracks trackList={this.setState.tracks}/>
+                            <div style={{overflowY:'scroll',height:'900px',marginRight:'100px',marginLeft:'5px',marginTop:'10px'}}>
+                                <Tracks trackItems={this.state.tracks.items}/>
+                            </div>
                         </div>
                         
                     </div>
@@ -69,8 +103,10 @@ class SearchList extends React.Component{
                 <div className="ui">
                 <SearchBar onSubmitForm={this.onSubmitForm}/>
                 <div style={{color:'white',align: 'center'}} className="ui">
-                    <SearchMenu onRouteChange={this.onRouteChange}/>
-                            <Artists/>
+                    <SearchMenu tc={this.onTracksClicked} alc={this.onAlbumsClicked} arc={this.onArtistsClicked} onRouteChange={this.onRouteChange} active={this.state.active}/>
+                    <div style={{overflowY:'scroll',height:'900px',marginRight:'100px',marginLeft:'5px',marginTop:'10px'}}>
+                            <Artists artists={this.state.artists.items}/>
+                        </div>
                     
                 </div>
             </div>
@@ -82,10 +118,10 @@ class SearchList extends React.Component{
                 <div className="ui">
                 <SearchBar onSubmitForm={this.onSubmitForm}/>
                 <div style={{color:'white',align: 'center'}} className="ui">
-                    <SearchMenu onRouteChange={this.onRouteChange}/>
-                    
-                            <Albums/>
-                
+                    <SearchMenu tc={this.onTracksClicked} alc={this.onAlbumsClicked} arc={this.onArtistsClicked} onRouteChange={this.onRouteChange} active={this.state.active}/>
+                    <div style={{overflowY:'scroll',height:'900px',marginRight:'100px',marginTop:'10px'}}>
+                            <Albums albums={this.state.albums.items}/>
+                        </div>
                 </div>
             </div>
         );}

@@ -17,7 +17,7 @@ class SearchBar extends React.Component{
 
     render(){
     return(
-        <div className="search-bar ui segment" style={{background: '#383838'}}>
+        <div className="search-bar ui segment" style={{background: '#181818'}}>
             <form className="ui form" onSubmit={this.onFormSubmit}>
                 <div className="field">
                         <div class="ui inverted transparent massive icon input">
