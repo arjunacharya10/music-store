@@ -85,7 +85,7 @@ class SideNav extends React.Component{
                         <HomeLogo onRouteChange={this.props.onRouteChange}/><br/><br/>
                         <a style={this.state.active.b1?{color: '#67ce63'}:{color:'#818181'}} onClick={()=>{this.onHomeClick();this.props.onRouteChange('home');}} href="#"><i className="icon home">&nbsp;&nbsp;Home</i></a><br/>
                         <a style={this.state.active.b2?{color: '#67ce63'}:{color:'#818181'}} onClick={()=>{this.onSearchClick();this.props.onRouteChange('search');}} href="#"><i className="icon search">&nbsp;&nbsp;Search</i></a><br/>
-                        <a style={this.state.active.b3?{color: '#67ce63'}:{color:'#818181'}} onClick={()=>{this.onLibClick();this.props.onRouteChange('home');}} href="#"><i className="icon cart">&nbsp;&nbsp;Cart</i></a><br/>
+                        <a style={this.state.active.b3?{color: '#67ce63'}:{color:'#818181'}} onClick={()=>{this.onLibClick();this.props.onRouteChange('cart');}} href="#"><i className="icon cart">&nbsp;&nbsp;Cart</i></a><br/>
                         
                         <div className="line"></div>
                         <a style={this.state.active.b4?{color: '#67ce63'}:{color:'#818181'}} style={{marginTop: '200px'}} href="#"><i className="icon">&nbsp;&nbsp;About</i></a><br/>

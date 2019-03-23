@@ -89,7 +89,7 @@ class SearchList extends React.Component{
                         </div>    
                         <div className="ui">
                             <div style={{overflowY:'scroll',height:'900px',marginRight:'100px',marginLeft:'5px',marginTop:'10px'}}>
-                                <Tracks trackItems={this.state.tracks.items}/>
+                                <Tracks trackItems={this.state.tracks.items} updateCart={this.props.updateCart} cart={this.props.cart}/>
                             </div>
                         </div>
                         

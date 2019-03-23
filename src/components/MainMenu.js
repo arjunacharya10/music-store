@@ -8,13 +8,18 @@ import SideNav from './SideNav';
 import HomeScreen from './HomeScreen';
 import FooterBar from './FooterBar';
 import SearchList from './SearchList';
+import CartMain from './Cart/CartMain';
+
+
 class MainMenu extends React.Component{
 
     state={
         currentRoute: 'home',
         access_token: '',
         butClicked: false,
-        butColor: '#818181'
+        butColor: '#818181',
+        cart: [],
+        cartCost: 0
     };
     onRouteChange = (route)=>{
         this.setState({currentRoute: route});
@@ -23,6 +28,28 @@ class MainMenu extends React.Component{
     componentDidMount(){
         this.setState({access_token: this.props.access_token});
         console.log(this.state.access_token);
+    }
+
+    updateCart=(track,trackCost)=>{
+        track.cost = trackCost;
+        const currentCart = this.state.cart;
+        currentCart.push(track);
+        var cCost=0;
+        currentCart.forEach(item=>{
+            cCost+=item.cost;
+        });
+        this.setState({cart:currentCart,cartCost:cCost});
+        console.log(this.state.cart[this.state.cart.length-1].cost);
+    }
+
+    removeFromCart=(index)=>{
+        const currentCart = this.state.cart;
+        currentCart.splice(index,1);
+        var cCost=0;
+        currentCart.forEach(item=>{
+            cCost+=item.cost;
+        });
+        this.setState({cart:currentCart,cartCost:cCost});
     }
     
     
@@ -63,7 +90,20 @@ class MainMenu extends React.Component{
                 <div>
                     <SideNav onRouteChange={this.onRouteChange} currentUser={this.props.currentUser} onSignOut={this.props.onSignOut}/>
                         <div className="main" style={{marginRight:'1000px'}}>
-                            <SearchList currentUser={this.props.currentUser} access_token={this.state.access_token}/>
+                            <SearchList currentUser={this.props.currentUser} access_token={this.state.access_token} updateCart={this.updateCart} cart={this.state.cart}/>
+                        </div>
+                        <div class="footer">
+                            <p>Footer</p>
+                        </div>
+                </div>
+            );
+        }
+        else if(this.state.currentRoute==='cart'){
+            return(
+                <div>
+                    <SideNav onRouteChange={this.onRouteChange} currentUser={this.props.currentUser} onSignOut={this.props.onSignOut}/>
+                        <div className="main" style={{marginRight:'1000px'}}>
+                            <CartMain cartList={this.state.cart} removeFromCart={this.removeFromCart} cartCost={this.state.cartCost}/>
                         </div>
                         <div class="footer">
                             <p>Footer</p>
