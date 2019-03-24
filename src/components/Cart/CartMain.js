@@ -9,7 +9,7 @@ const CartMain = ({cartList,removeFromCart,cartCost,onBuySongs})=>{
         return (<CartItem track={track} key={track.id} index={index} removeFromCart={removeFromCart}/>);
     });
 
-    if(cartCost!=0)
+    if(cartList.length!=0)
     {
         return(
             <div  className="" style={{color:'white',overflowY:'clip'}}>

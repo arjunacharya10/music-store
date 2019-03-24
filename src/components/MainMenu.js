@@ -15,6 +15,7 @@ import axios from 'axios';
 class MainMenu extends React.Component{
 
     state={
+        user: '',
         currentRoute: 'home',
         access_token: '',
         butClicked: false,
@@ -28,6 +29,7 @@ class MainMenu extends React.Component{
 
     componentDidMount(){
         this.setState({access_token: this.props.access_token});
+        this.setState({user:this.props.currentUser});
         console.log(this.state.access_token);
     }
 
@@ -56,11 +58,14 @@ class MainMenu extends React.Component{
     onBuySongs=()=>{
         this.state.cart.forEach(song=>{
             axios.post('http://localhost:3000/purchase',song)
+            .then(res=>{
+                this.setState({cart:[],cartCost:0});
+            })
             .catch(err=>{
                 console.log('failed');
             })
         });
-        console.log('Done');
+        alert('Thank you For Purchasing! happy listening..');
     }
     
     
