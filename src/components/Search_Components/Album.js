@@ -2,20 +2,21 @@ import React from 'react';
 import img from '../sym6.png'
 import blank from './blank1.png';
 
-const Album =({album})=>{
+const Album =({album,onRouteChange})=>{
     
     var artList="";
     album.artists.forEach(artist=>{
         artList+=artist.name+", ";
     });
 
+    var albumImage = album.images.length?album.images[1].url:blank;
     
     if(album)
     {
             return(
-            <a style={{color: 'white'}} href={album.external_urls.spotify}>
+            <a onClick={()=>onRouteChange(album.id,'tracks',albumImage,album.name,artList)} style={{color: 'white'}}>
                 <div className='tc  dib br3 pa3 ma2 grow'>
-                <img src={album.images.length?album.images[1].url:blank}  alt="robots"/>
+                <img src={albumImage}  alt="robots"/>
                 <div>
                     <h2>{album.name.length>20?album.name.slice(0,17)+'...':album.name}</h2>
                     <p>{artList.length>20?artList.slice(0,17)+'...':artList}</p>

@@ -9,6 +9,7 @@ import HomeScreen from './HomeScreen';
 import FooterBar from './FooterBar';
 import SearchList from './SearchList';
 import CartMain from './Cart/CartMain';
+import axios from 'axios';
 
 
 class MainMenu extends React.Component{
@@ -50,6 +51,16 @@ class MainMenu extends React.Component{
             cCost+=item.cost;
         });
         this.setState({cart:currentCart,cartCost:cCost});
+    }
+
+    onBuySongs=()=>{
+        this.state.cart.forEach(song=>{
+            axios.post('http://localhost:3000/purchase',song)
+            .catch(err=>{
+                console.log('failed');
+            })
+        });
+        console.log('Done');
     }
     
     
@@ -103,7 +114,7 @@ class MainMenu extends React.Component{
                 <div>
                     <SideNav onRouteChange={this.onRouteChange} currentUser={this.props.currentUser} onSignOut={this.props.onSignOut}/>
                         <div className="main" style={{marginRight:'1000px'}}>
-                            <CartMain cartList={this.state.cart} removeFromCart={this.removeFromCart} cartCost={this.state.cartCost}/>
+                            <CartMain cartList={this.state.cart} removeFromCart={this.removeFromCart} cartCost={this.state.cartCost} onBuySongs={this.onBuySongs}/>
                         </div>
                         <div class="footer">
                             <p>Footer</p>

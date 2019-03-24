@@ -1,6 +1,6 @@
 import React from 'react';
 import SearchBar from './SearchBar';
-import Spotify from '../apis/spot';
+import Spotify from './apis/spot';
 import SearchMenu from './SearchMenu';
 import Tracks from './Search_Components/Tracks';
 import Artists from './Search_Components/Artists';
@@ -105,7 +105,7 @@ class SearchList extends React.Component{
                 <div style={{color:'white',align: 'center'}} className="ui">
                     <SearchMenu tc={this.onTracksClicked} alc={this.onAlbumsClicked} arc={this.onArtistsClicked} onRouteChange={this.onRouteChange} active={this.state.active}/>
                     <div style={{overflowY:'scroll',height:'900px',marginRight:'100px',marginLeft:'5px',marginTop:'10px'}}>
-                            <Artists artists={this.state.artists.items}/>
+                            <Artists artists={this.state.artists.items} access_token={this.props.access_token} updateCart={this.props.updateCart} cart={this.props.cart}/>
                         </div>
                     
                 </div>
@@ -120,7 +120,7 @@ class SearchList extends React.Component{
                 <div style={{color:'white',align: 'center'}} className="ui">
                     <SearchMenu tc={this.onTracksClicked} alc={this.onAlbumsClicked} arc={this.onArtistsClicked} onRouteChange={this.onRouteChange} active={this.state.active}/>
                     <div style={{overflowY:'scroll',height:'900px',marginRight:'100px',marginTop:'10px'}}>
-                            <Albums albums={this.state.albums.items}/>
+                            <Albums albums={this.state.albums.items} access_token={this.props.access_token} updateCart={this.props.updateCart} cart={this.props.cart}/>
                         </div>
                 </div>
             </div>

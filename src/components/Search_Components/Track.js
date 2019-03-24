@@ -29,7 +29,11 @@ const Track =({track,updateCart,cart})=>{
     });
 
     var cost = parseInt(track.id,10) * 25 ;
-
+    var trackName=track.name.length>20?track.name.slice(0,17)+'...':track.name;
+    var trackLink = track.external_urls.spotify;
+    var trackImage = track.album.images[1].url;
+    var artistNames = artList.length>20?artList.slice(0,17)+'...':artList;
+    
     cost = cost%500;
     cost = cost<50?cost+50:cost;
 
@@ -37,10 +41,20 @@ const Track =({track,updateCart,cart})=>{
 
        
             <div className='tc  dib br3 pa3 ma2'>
-			 <a style={{color: 'white'}} href={track.external_urls.spotify}><img className="ui circular medium image grow" src={track.album.images[1].url} alt="robots"/></a>
+			 <a style={{color: 'white'}} href={trackLink}><img className="ui circular medium image grow" src={trackImage} alt="robots"/></a>
 			<div>
-				<h2><a onClick={()=>{if(!inCart){updateCart(track,cost);}}} style={{color:'white',cursor:'pointer'}}  className="ui grow">{inCart?'✔':'+'}&nbsp;&nbsp;&nbsp; </a>{track.name.length>20?track.name.slice(0,17)+'...':track.name} </h2>
-				<p>{artList.length>20?artList.slice(0,17)+'...':artList}&nbsp;&nbsp;&nbsp;&nbsp;<span style={{fontSize:'50sp'}}>Cost:₹ {cost<0?cost+50:cost}</span></p>
+				<h2><a onClick={()=>{if(!inCart){updateCart(
+                    {
+                        id: track.id,
+                        trackName: track.name,
+                        link: trackLink,
+                        image: trackImage,
+                        artistNames: artList
+                },
+                cost
+                );}}} 
+                style={{color:'white',cursor:'pointer'}}  className="ui grow">{inCart?'✔':'+'}&nbsp;&nbsp;&nbsp; </a>{trackName} </h2>
+				<p>{artistNames}&nbsp;&nbsp;&nbsp;&nbsp;<span style={{fontSize:'50sp'}}>Cost:₹ {cost}</span></p>
 			</div>
 		</div>
     );
