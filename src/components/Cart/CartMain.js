@@ -17,7 +17,7 @@ const CartMain = ({cartList,removeFromCart,cartCost})=>{
             <div  className="" style={{color:'white',overflowY:'clip'}}>
         <div style={{overflowY:'scroll',height:'750px',width:'50%'}} >{cartItems}</div>
         <div className="ui sticky">
-            <h2>Total: {cartCost}</h2>
+            <h2>Total: ₹&nbsp;{cartCost}</h2>
             <h2 style={{marginTop:'20px'}} className="ui inverted green button">Check Out</h2> 
         </div>
         <br/><br/><br/><br/><br/><br/><br/>
