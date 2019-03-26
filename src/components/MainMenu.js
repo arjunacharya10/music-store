@@ -56,13 +56,18 @@ class MainMenu extends React.Component{
     }
 
     onBuySongs=()=>{
+        console.log(this.state.user);
         this.state.cart.forEach(song=>{
-            axios.post('http://localhost:3000/purchase',song)
+            axios.post('http://localhost:3000/purchase',{
+                song: song,
+                user: this.state.user
+            })
             .then(res=>{
+                console.log(res);
                 this.setState({cart:[],cartCost:0});
             })
             .catch(err=>{
-                console.log('failed');
+                console.log(err);
             })
         });
         alert('Thank you For Purchasing! happy listening..');

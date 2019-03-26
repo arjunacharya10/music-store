@@ -1,5 +1,5 @@
 import React from 'react';
-import img from '../sym6.png'
+import img from '../sym6.png';
 
 const Track =({track,updateCart,cart})=>{
     /*return(
@@ -28,6 +28,8 @@ const Track =({track,updateCart,cart})=>{
         }
     });
 
+    console.log(track);
+
     var cost = parseInt(track.id,10) * 25 ;
     var trackName=track.name.length>20?track.name.slice(0,17)+'...':track.name;
     var trackLink = track.external_urls.spotify;
@@ -49,7 +51,7 @@ const Track =({track,updateCart,cart})=>{
                         trackName: track.name,
                         link: trackLink,
                         image: trackImage,
-                        artistNames: artList
+                        artistNames: track.artists
                 },
                 cost
                 );}}} 

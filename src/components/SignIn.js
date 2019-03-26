@@ -22,7 +22,8 @@ class SignIn extends Component {
     currentUser:{
       name: null,
       email: null,
-      avatar: null
+      avatar: null,
+      id: null
     },
     currenRoute: 'signin',
     spotifyAuth: false,
@@ -62,8 +63,10 @@ class SignIn extends Component {
     this.setState({currentUser:{
       name: user.name,
       email: user.email,
-      avatar: user.avatar
-    }});
+      avatar: user.avatar,
+      id: user.id
+    },isSignedIn: true});
+    console.log(this.state.currentUser);
   }
 
   

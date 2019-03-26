@@ -50,7 +50,7 @@ const TrackList = ({image,song,updateCart,cart})=>{
                         trackName: song.name,
                         link: song.external_urls.spotify,
                         image: image,
-                        artistNames: artists
+                        artistNames: song.artists
                     },cost)}>{inCart?'✔':'+'}</h2>
                 </div>
                 <div className="column">
