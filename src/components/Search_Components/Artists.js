@@ -58,7 +58,7 @@ class Artists extends React.Component{
             else{
                 return(
                     <div>
-                        <ArtistData albums={this.state.albums} access_token={this.props.access_token} updateCart={this.props.updateCart} cart={this.props.cart} onBackPressed={this.onBackPressed} name={this.state.artistName} image={this.state.artistImage} followers={this.state.artistFollowers}/>
+                        <ArtistData purchasedSongs={this.props.purchasedSongs} albums={this.state.albums} access_token={this.props.access_token} updateCart={this.props.updateCart} cart={this.props.cart} onBackPressed={this.onBackPressed} name={this.state.artistName} image={this.state.artistImage} followers={this.state.artistFollowers}/>
                     </div>
                 )
             }

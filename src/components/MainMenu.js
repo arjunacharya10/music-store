@@ -15,19 +15,58 @@ import axios from 'axios';
 class MainMenu extends React.Component{
 
     state={
-        user: '',
+        user: this.props.currentUser,
         currentRoute: 'home',
         access_token: '',
         butClicked: false,
         butColor: '#818181',
         cart: [],
-        cartCost: 0
+        cartCost: 0,
+        purchasedSongs: []
     };
     onRouteChange = (route)=>{
         this.setState({currentRoute: route});
     }
 
     componentDidMount(){
+        this.setState({user:this.props.currentUser});
+        console.log(this.state.user);
+        axios.post('http://localhost:3000/send-purchased',{
+                    id: this.state.user.id
+                })
+                .then(psongs=>{
+                    console.log("Song info:")
+                    console.log(psongs);
+                    var sdata = psongs.data
+                    var songs=[];
+                    for(var i=0;i<psongs.data.length;i++){
+                        var song=[];
+                        var curid = sdata[i].sid;
+                        for(var j=i;j<sdata.length;j++){
+                            if(sdata[j].sid === curid){
+                                song.push(sdata[j].name);
+                            }
+                            else{
+                                break;
+                            }
+                        }
+                        i=j-1;
+                        console.log(song);
+                        songs.push({
+                            id: sdata[i].sid,
+                            trackName: sdata[i].sname,
+                            link: sdata[i].link,
+                            image: sdata[i].image,
+                            artistNames: song
+                        })
+                    }
+                    console.log("Purchased songs:");
+                    console.log(songs);
+                    this.setState({purchasedSongs:songs,cart:[],cartCost:0});
+                })
+                .catch(err=>{
+                    console.log('Failed to fetch purhcased songs');
+                })
         this.setState({access_token: this.props.access_token});
         this.setState({user:this.props.currentUser});
         console.log(this.state.access_token);
@@ -63,8 +102,37 @@ class MainMenu extends React.Component{
                 user: this.state.user
             })
             .then(res=>{
-                console.log(res);
-                this.setState({cart:[],cartCost:0});
+                axios.post('http://localhost:3000/send-purchased',{
+                    id: this.state.user.id
+                })
+                .then(psongs=>{
+                    var sdata = psongs.data
+                    var songs=[];
+                    for(var i=0;i<psongs.data.length;i++){
+                        var song=[];
+                        var curid = sdata[i].sid;
+                        for(var j=i;j<sdata.length;j++){
+                            if(sdata[j].sid === curid){
+                                song.push(sdata[j].name);
+                            }
+                            else{
+                                break;
+                            }
+                        }
+                        i=j-1;
+                        songs.push({
+                            id: sdata[i].sid,
+                            trackName: sdata[i].sname,
+                            link: sdata[i].link,
+                            image: sdata[i].image,
+                            artistNames: song
+                        })
+                    }
+                    this.setState({purchasedSongs:songs,cart:[],cartCost:0});
+                })
+                .catch(err=>{
+                    console.log('Failed to fetch purhcased songs');
+                })
             })
             .catch(err=>{
                 console.log(err);
@@ -111,7 +179,7 @@ class MainMenu extends React.Component{
                 <div>
                     <SideNav onRouteChange={this.onRouteChange} currentUser={this.props.currentUser} onSignOut={this.props.onSignOut}/>
                         <div className="main" style={{marginRight:'1000px'}}>
-                            <SearchList currentUser={this.props.currentUser} access_token={this.state.access_token} updateCart={this.updateCart} cart={this.state.cart}/>
+                            <SearchList currentUser={this.props.currentUser} access_token={this.state.access_token} updateCart={this.updateCart} cart={this.state.cart} purchasedSongs={this.state.purchasedSongs}/>
                         </div>
                         <div class="footer">
                             <p>Footer</p>

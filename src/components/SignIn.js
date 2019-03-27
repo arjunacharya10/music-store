@@ -41,9 +41,17 @@ class SignIn extends Component {
   }
 
   onSignOut=()=>{
-    this.setState({currenRoute: 'signin'});
-    this.setState({isSignedIn: false});
-  }
+    this.setState({currentUser:{
+      name: null,
+      email: null,
+      avatar: null,
+      id: null
+    }
+  })
+
+  this.setState({isSignedIn: false});
+  this.setState({currenRoute: 'signin'});
+};
 
 
   uiConfig = {
@@ -59,7 +67,6 @@ class SignIn extends Component {
   };
 
   updateSignedIn = (user)=>{
-    this.setState({isSignedIn: true});
     this.setState({currentUser:{
       name: user.name,
       email: user.email,

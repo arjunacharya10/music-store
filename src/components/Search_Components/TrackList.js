@@ -4,7 +4,7 @@ import blank from './blank.png';
 import songImg from './song2.png';
 
 
-const TrackList = ({image,song,updateCart,cart})=>{
+const TrackList = ({image,song,updateCart,cart,purchasedSongs})=>{
 
     var artists="";
     song.artists.forEach(artist=>{
@@ -21,6 +21,12 @@ const TrackList = ({image,song,updateCart,cart})=>{
 
       cart.forEach(cartTrack=>{
           if(cartTrack.id===song.id){
+              inCart=true;
+          }
+      });
+      console.log(purchasedSongs);
+      purchasedSongs.forEach(track=>{
+          if(track.id===song.id){
               inCart=true;
           }
       });

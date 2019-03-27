@@ -1,7 +1,7 @@
 import React from 'react';
 import img from '../sym6.png';
 
-const Track =({track,updateCart,cart})=>{
+const Track =({track,updateCart,cart,purchasedSongs})=>{
     /*return(
         <div className="ui">
                 <div style={{display: 'inline'}} className="ui item">
@@ -24,6 +24,12 @@ const Track =({track,updateCart,cart})=>{
 
     cart.forEach(cartTrack=>{
         if(cartTrack.id===track.id){
+            inCart=true;
+        }
+    });
+
+    purchasedSongs.forEach(tracks=>{
+        if(tracks.id===track.id){
             inCart=true;
         }
     });
