@@ -1,7 +1,7 @@
 import React from 'react';
 import img from '../sym6.png';
 
-const Track =({track,updateCart,cart,purchasedSongs})=>{
+const Track =({track,updateCart,cart,purchasedSongs,setSongUrl})=>{
     /*return(
         <div className="ui">
                 <div style={{display: 'inline'}} className="ui item">
@@ -49,7 +49,7 @@ const Track =({track,updateCart,cart,purchasedSongs})=>{
 
        
             <div className='tc  dib br3 pa3 ma2'>
-			 <a style={{color: 'white'}} href={trackLink}><img className="ui circular medium image grow" src={trackImage} alt="robots"/></a>
+			 <a style={{color: 'white'}} onClick={()=>{setSongUrl(track.id)}}><img className="ui circular medium image grow" src={trackImage} alt="robots"/></a>
 			<div>
 				<h2><a onClick={()=>{if(!inCart){updateCart(
                     {

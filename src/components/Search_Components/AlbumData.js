@@ -3,12 +3,12 @@ import Track from './Track';
 import blank from './blank.png';
 import TrackList from './TrackList'
 
-const AlbumData=({onRouteChange,title,artist,image,albumTracks,updateCart,cart,purchasedSongs})=>{
+const AlbumData=({onRouteChange,title,artist,image,albumTracks,updateCart,cart,purchasedSongs,setSongUrl})=>{
 
     if(albumTracks)
     {
             const songs = albumTracks.map(song=>{
-                return (<TrackList key={song.id} image={image} song={song} updateCart={updateCart} cart={cart} purchasedSongs={purchasedSongs}/>);
+                return (<TrackList setSongUrl={setSongUrl} key={song.id} image={image} song={song} updateCart={updateCart} cart={cart} purchasedSongs={purchasedSongs}/>);
             })
 
 

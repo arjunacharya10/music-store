@@ -2,7 +2,7 @@ import React from 'react';
 import Albums from './Albums';
 
 
-const ArtistData=({albums,access_token,updateCart,cart,onBackPressed,image,name,followers,purchasedSongs})=>{
+const ArtistData=({albums,access_token,updateCart,cart,onBackPressed,image,name,followers,purchasedSongs,setSongUrl})=>{
     return(
         <div className="ui">
                 <div className="ui container center">
@@ -14,7 +14,7 @@ const ArtistData=({albums,access_token,updateCart,cart,onBackPressed,image,name,
                 </div>
                 <div class="ui divider"></div>
                 <div>
-                <Albums albums={albums} access_token={access_token} updateCart={updateCart} cart={cart} purchasedSongs={purchasedSongs}/>
+                <Albums albums={albums} access_token={access_token} updateCart={updateCart} cart={cart} purchasedSongs={purchasedSongs} setSongUrl={setSongUrl}/>
                 </div>  
         </div>
     );

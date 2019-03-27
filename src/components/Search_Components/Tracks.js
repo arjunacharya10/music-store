@@ -1,10 +1,10 @@
 import React from 'react';
 import Track from './Track';
 
-const Tracks = ({trackItems,updateCart,cart,purchasedSongs})=>{
+const Tracks = ({trackItems,updateCart,cart,purchasedSongs,setSongUrl})=>{
 
     const songCards = trackItems.map(track=>{
-        return (<Track key={track.id} track={track} updateCart={updateCart} cart={cart} purchasedSongs={purchasedSongs}/>);
+        return (<Track key={track.id} track={track} updateCart={updateCart} cart={cart} purchasedSongs={purchasedSongs} setSongUrl={setSongUrl}/>);
     })
 
     if(trackItems.length)

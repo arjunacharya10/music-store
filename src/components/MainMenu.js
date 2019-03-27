@@ -10,6 +10,7 @@ import FooterBar from './FooterBar';
 import SearchList from './SearchList';
 import CartMain from './Cart/CartMain';
 import axios from 'axios';
+import FooterComp from './Footer/FooterComp';
 
 
 class MainMenu extends React.Component{
@@ -22,7 +23,10 @@ class MainMenu extends React.Component{
         butColor: '#818181',
         cart: [],
         cartCost: 0,
-        purchasedSongs: []
+        purchasedSongs: [],
+        songid: '',
+        played: [],
+        cursongi: 0
     };
     onRouteChange = (route)=>{
         this.setState({currentRoute: route});
@@ -94,6 +98,22 @@ class MainMenu extends React.Component{
         this.setState({cart:currentCart,cartCost:cCost});
     }
 
+    setSongUrl=(id)=>{
+        var playedSongs = this.state.played;
+        playedSongs.push(id);
+        this.setState({cursongi: playedSongs.length-1,played:playedSongs,songid:id}); 
+    }
+
+    clickNextPrev=(val)=>{
+        var ind = this.state.cursongi;
+        if(val==-1 && ind === 0 )
+            ind = this.state.played.length-1;
+        else
+            ind = (ind+val)%this.state.played.length;
+        this.setState({songid:this.state.played[ind],cursongi:ind});
+    }
+
+
     onBuySongs=()=>{
         console.log(this.state.user);
         this.state.cart.forEach(song=>{
@@ -128,6 +148,7 @@ class MainMenu extends React.Component{
                             artistNames: song
                         })
                     }
+                    console.log(songs);
                     this.setState({purchasedSongs:songs,cart:[],cartCost:0});
                 })
                 .catch(err=>{
@@ -150,11 +171,11 @@ class MainMenu extends React.Component{
                 <div>
                     <SideNav onRouteChange={this.onRouteChange} currentUser={this.props.currentUser} onSignOut={this.props.onSignOut}/>
                         <div className="main" style={{marginRight:'1000px'}}>
-                            <Profile currentUser={this.props.currentUser}/>
+                            <Profile currentUser={this.props.currentUser} trackItems = {this.state.purchasedSongs} setSongUrl={this.setSongUrl}/>
                         </div>
-                        <div class="footer">
-                            <p>Footer</p>
-                        </div>
+                        { this.state.songid?
+                        <FooterComp songid={this.state.songid} clickNextPrev={this.clickNextPrev}/>:
+                        <div></div>}
                 </div>
             );
         }
@@ -166,9 +187,9 @@ class MainMenu extends React.Component{
                         <div className="main" style={{marginRight:'1000px'}}>
                             <HomeScreen/>
                         </div>
-                        <div class="footer">
-                            <p>Footer</p>
-                        </div>
+                        { this.state.songid?
+                        <FooterComp songid={this.state.songid} clickNextPrev={this.clickNextPrev}/>:
+                        <div></div>}
                 </div>
             );
 
@@ -179,11 +200,11 @@ class MainMenu extends React.Component{
                 <div>
                     <SideNav onRouteChange={this.onRouteChange} currentUser={this.props.currentUser} onSignOut={this.props.onSignOut}/>
                         <div className="main" style={{marginRight:'1000px'}}>
-                            <SearchList currentUser={this.props.currentUser} access_token={this.state.access_token} updateCart={this.updateCart} cart={this.state.cart} purchasedSongs={this.state.purchasedSongs}/>
+                            <SearchList setSongUrl={this.setSongUrl} currentUser={this.props.currentUser} access_token={this.state.access_token} updateCart={this.updateCart} cart={this.state.cart} purchasedSongs={this.state.purchasedSongs}/>
                         </div>
-                        <div class="footer">
-                            <p>Footer</p>
-                        </div>
+                        { this.state.songid?
+                        <FooterComp songid={this.state.songid} clickNextPrev={this.clickNextPrev}/>:
+                        <div></div>}
                 </div>
             );
         }
@@ -194,9 +215,9 @@ class MainMenu extends React.Component{
                         <div className="main" style={{marginRight:'1000px'}}>
                             <CartMain cartList={this.state.cart} removeFromCart={this.removeFromCart} cartCost={this.state.cartCost} onBuySongs={this.onBuySongs}/>
                         </div>
-                        <div class="footer">
-                            <p>Footer</p>
-                        </div>
+                        { this.state.songid?
+                        <FooterComp songid={this.state.songid} clickNextPrev={this.clickNextPrev}/>:
+                        <div></div>}
                 </div>
             );
         }
@@ -209,20 +230,6 @@ class MainMenu extends React.Component{
 }
 
 export default MainMenu;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /*return(
             <div>

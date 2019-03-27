@@ -4,7 +4,7 @@ import blank from './blank.png';
 import songImg from './song2.png';
 
 
-const TrackList = ({image,song,updateCart,cart,purchasedSongs})=>{
+const TrackList = ({image,song,updateCart,cart,purchasedSongs,setSongUrl})=>{
 
     var artists="";
     song.artists.forEach(artist=>{
@@ -41,7 +41,7 @@ const TrackList = ({image,song,updateCart,cart,purchasedSongs})=>{
         <div class="ui divider"></div>
             <div className="row">
                 <div className="column">
-                    <img className="ui tiny circular image" src={songImg} width="64px" height="64px"></img>
+                    <img style={{cursor:'pointer'}} onClick={()=>{setSongUrl(song.id)}} className="ui tiny circular image" src={songImg} width="64px" height="64px"></img>
                 </div>
                 <div className="double-column">
                     <h3>{song.name}</h3>

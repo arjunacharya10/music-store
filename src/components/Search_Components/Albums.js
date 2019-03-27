@@ -56,7 +56,7 @@ class Albums extends React.Component{
         else{
             return(
                 <div>
-                    <AlbumData onRouteChange={this.onBackPressed} title={this.state.title} artist={this.state.artist} image={this.state.albumImage} albumTracks={this.state.albumTracks} updateCart={this.props.updateCart} cart={this.props.cart} purchasedSongs={this.props.purchasedSongs}/>
+                    <AlbumData setSongUrl={this.props.setSongUrl} onRouteChange={this.onBackPressed} title={this.state.title} artist={this.state.artist} image={this.state.albumImage} albumTracks={this.state.albumTracks} updateCart={this.props.updateCart} cart={this.props.cart} purchasedSongs={this.props.purchasedSongs}/>
                 </div>
             )
         }

@@ -89,7 +89,7 @@ class SearchList extends React.Component{
                         </div>    
                         <div className="ui">
                             <div style={{overflowY:'scroll',height:'900px',marginRight:'100px',marginLeft:'5px',marginTop:'10px'}}>
-                                <Tracks trackItems={this.state.tracks.items} updateCart={this.props.updateCart} cart={this.props.cart} purchasedSongs={this.props.purchasedSongs}/>
+                                <Tracks setSongUrl={this.props.setSongUrl} trackItems={this.state.tracks.items} updateCart={this.props.updateCart} cart={this.props.cart} purchasedSongs={this.props.purchasedSongs}/>
                             </div>
                         </div>
                         
@@ -105,7 +105,7 @@ class SearchList extends React.Component{
                 <div style={{color:'white',align: 'center'}} className="ui">
                     <SearchMenu tc={this.onTracksClicked} alc={this.onAlbumsClicked} arc={this.onArtistsClicked} onRouteChange={this.onRouteChange} active={this.state.active}/>
                     <div style={{overflowY:'scroll',height:'900px',marginRight:'100px',marginLeft:'5px',marginTop:'10px'}}>
-                            <Artists artists={this.state.artists.items} access_token={this.props.access_token} updateCart={this.props.updateCart} cart={this.props.cart} purchasedSongs={this.props.purchasedSongs}/>
+                            <Artists setSongUrl={this.props.setSongUrl} artists={this.state.artists.items} access_token={this.props.access_token} updateCart={this.props.updateCart} cart={this.props.cart} purchasedSongs={this.props.purchasedSongs}/>
                         </div>
                     
                 </div>
@@ -120,7 +120,7 @@ class SearchList extends React.Component{
                 <div style={{color:'white',align: 'center'}} className="ui">
                     <SearchMenu tc={this.onTracksClicked} alc={this.onAlbumsClicked} arc={this.onArtistsClicked} onRouteChange={this.onRouteChange} active={this.state.active}/>
                     <div style={{overflowY:'scroll',height:'900px',marginRight:'100px',marginTop:'10px'}}>
-                            <Albums albums={this.state.albums.items} access_token={this.props.access_token} updateCart={this.props.updateCart} cart={this.props.cart} purchasedSongs={this.props.purchasedSongs}/>
+                            <Albums setSongUrl={this.props.setSongUrl} albums={this.state.albums.items} access_token={this.props.access_token} updateCart={this.props.updateCart} cart={this.props.cart} purchasedSongs={this.props.purchasedSongs}/>
                         </div>
                 </div>
             </div>
