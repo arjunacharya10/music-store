@@ -21,6 +21,7 @@ const Track =({track,updateCart,cart,purchasedSongs,setSongUrl})=>{
     });
 
     var inCart=false;
+    var bought=false;
 
     cart.forEach(cartTrack=>{
         if(cartTrack.id===track.id){
@@ -31,6 +32,7 @@ const Track =({track,updateCart,cart,purchasedSongs,setSongUrl})=>{
     purchasedSongs.forEach(tracks=>{
         if(tracks.id===track.id){
             inCart=true;
+            bought=true;
         }
     });
 
@@ -49,7 +51,7 @@ const Track =({track,updateCart,cart,purchasedSongs,setSongUrl})=>{
 
        
             <div className='tc  dib br3 pa3 ma2'>
-			 <a style={{color: 'white'}} onClick={()=>{setSongUrl(track.id)}}><img className="ui circular medium image grow" src={trackImage} alt="robots"/></a>
+			 <a style={{color: 'white'}} onClick={()=>{if(bought){setSongUrl(track.id);}else alert('Purchase the song to listen to it..')}}><img className="ui circular medium image grow" src={trackImage} alt="robots"/></a>
 			<div>
 				<h2><a onClick={()=>{if(!inCart){updateCart(
                     {

@@ -33,9 +33,9 @@
   height: 100%; /* Set the width of the sidebar */
   position: fixed; /* Fixed Sidebar (stay in place on scroll) */
   z-index: 1; /* Stay on top */
-  top: 0; /* Stay at the top */
+  top: 0; /* Stay at the top *//*#175730*/
   left: 0;
-  background: linear-gradient(to top left , #175730 , #111);/* Black */
+  background: linear-gradient(to top left , #000   , #022649);/* Black */
   overflow-x: hidden; /* Disable horizontal scroll */ 
   margin-left: 200px;
 }

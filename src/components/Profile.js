@@ -12,7 +12,7 @@ const Profile = (props)=>{
         </div>*/
         <div className="ui container">
             <ProfileTop currentUser={props.currentUser}/>
-            <Playlists/>
+            <Playlists currentUser={props.currentUser}/>
             <PurchasedSongs trackItems={props.trackItems} setSongUrl={props.setSongUrl}/>
         </div>
 

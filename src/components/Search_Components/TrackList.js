@@ -18,6 +18,7 @@ const TrackList = ({image,song,updateCart,cart,purchasedSongs,setSongUrl})=>{
       }
 
       var inCart=false;
+      var bought=false;
 
       cart.forEach(cartTrack=>{
           if(cartTrack.id===song.id){
@@ -28,6 +29,7 @@ const TrackList = ({image,song,updateCart,cart,purchasedSongs,setSongUrl})=>{
       purchasedSongs.forEach(track=>{
           if(track.id===song.id){
               inCart=true;
+              bought=true;
           }
       });
 
@@ -41,7 +43,7 @@ const TrackList = ({image,song,updateCart,cart,purchasedSongs,setSongUrl})=>{
         <div class="ui divider"></div>
             <div className="row">
                 <div className="column">
-                    <img style={{cursor:'pointer'}} onClick={()=>{setSongUrl(song.id)}} className="ui tiny circular image" src={songImg} width="64px" height="64px"></img>
+                    <img style={{cursor:'pointer'}} onClick={()=>{if(bought)setSongUrl(song.id);else alert('Purchase the song to listen to it..')}} className="ui tiny circular image" src={songImg} width="64px" height="64px"></img>
                 </div>
                 <div className="double-column">
                     <h3>{song.name}</h3>

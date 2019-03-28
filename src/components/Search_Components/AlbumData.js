@@ -15,7 +15,7 @@ const AlbumData=({onRouteChange,title,artist,image,albumTracks,updateCart,cart,p
         return(
             <div className="ui container center">
                 <div >
-                    <i style={{cursor:'pointer'}} onClick={()=>onRouteChange('albums')} className="icon arrow left"/><br/><br/><br/>
+                    <i style={{cursor:'pointer',color:'white'}} onClick={()=>onRouteChange('albums')} className="icon arrow left"/><br/><br/><br/>
                     <img src={image} className="ui medium image"></img>
                     <h3>{title}</h3>
                     <span style={{color:'grey'}}>{artist}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Songs:&nbsp;&nbsp;&nbsp;{albumTracks.length}</span>
