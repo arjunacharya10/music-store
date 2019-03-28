@@ -1,10 +1,10 @@
 import React from 'react';
-import TrackItem from './TrackItems';
+import PSongList from './PSongList';
 
-const PurchasedSongs = ({trackItems,setSongUrl})=>{
+const PSongData = ({trackItems,setSongUrl,addSongToPlaylist})=>{
 
     const songCards = trackItems.map(track=>{
-        return (<TrackItem key={track.id} track={track} setSongUrl={setSongUrl}/>);
+        return (<PSongList addSongToPlaylist={addSongToPlaylist} key={track.id} track={track} setSongUrl={setSongUrl}/>);
     })
 
     if(trackItems.length)
@@ -22,4 +22,4 @@ const PurchasedSongs = ({trackItems,setSongUrl})=>{
     }
 }
 
-export default PurchasedSongs;
+export default PSongData;

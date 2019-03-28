@@ -12,7 +12,8 @@ const Profile = (props)=>{
         </div>*/
         <div className="ui container">
             <ProfileTop currentUser={props.currentUser}/>
-            <Playlists currentUser={props.currentUser}/>
+            <Playlists trackItems={props.trackItems} setSongUrl={props.setSongUrl} currentUser={props.currentUser}/>
+            <h2 style={{color:'white'}}>Purchased Songs:</h2>
             <PurchasedSongs trackItems={props.trackItems} setSongUrl={props.setSongUrl}/>
         </div>
 

@@ -6,10 +6,9 @@
   z-index: 1; /* Stay on top */
   top: 0; /* Stay at the top */
   left: 0;
-  background-color: #000; /* Black */
+  background-color: #020202; /* Black */
   overflow-x: hidden; /* Disable horizontal scroll */
   padding-top: 20px;
-  font-family: 'Sniglet', cursive;
 }
 
 /* The navigation menu links */
@@ -19,7 +18,7 @@
   font-size: 18px;
   color: #818181;
   display: block;
-  font-family: 'Sniglet', cursive;
+  font-family: 'Times New Roman', Times, serif;
 }
 
 /* When you mouse over the navigation links, change their color */
@@ -35,7 +34,7 @@
   z-index: 1; /* Stay on top */
   top: 0; /* Stay at the top *//*#175730*/
   left: 0;
-  background: linear-gradient(to top left , #000   , #022649);/* Black */
+  background: linear-gradient(to top left , #000   , #091f36);/* Black */
   overflow-x: hidden; /* Disable horizontal scroll */ 
   margin-left: 200px;
 }
