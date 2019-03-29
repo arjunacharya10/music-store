@@ -10,10 +10,9 @@ class Playlists extends React.Component{
         term: '',
         currentRoute:'listdata',
         playlists: [],
-        playlistSongs:[],
         title:'',
         image:'',
-        pid:''
+        pid:'',
     }
 
     onRouteChange=(route)=>{
@@ -96,6 +95,20 @@ class Playlists extends React.Component{
             })
     }*/
 
+    removeSongFromPlaylist=(id)=>{
+        axios.post('http://localhost:3000/delete-from-playlist',{
+            pid: this.state.pid,
+            sid: id
+        })
+        .then(resp=>{
+            this.setState(this.state);
+            this.forceUpdate();
+        })
+        .catch(err=>{
+            console.log(err);
+        })
+    }
+
     componentDidMount=()=>{
         axios.post('http://localhost:3000/get-playlist',{
                 id: this.props.currentUser.id,
@@ -138,9 +151,9 @@ class Playlists extends React.Component{
                 <h1 style={{color:'white'}}>Playlists:</h1>
                 {
                     this.state.currentRoute==='listdata'?
-                    <ListData onImageClicked={this.onImageClicked} playlists={this.state.playlists} onPlaylistSubmit={this.onPlaylistSubmit} onRemovePlaylist={this.onRemovePlaylist}/>
+                    <ListData  onImageClicked={this.onImageClicked} playlists={this.state.playlists} onPlaylistSubmit={this.onPlaylistSubmit} onRemovePlaylist={this.onRemovePlaylist}/>
                     :
-                    <PlayInfo imageUpdater={this.imageUpdater} pid={this.state.pid} uid={this.props.currentUser.id} addSongToPlaylist={this.addSongToPlaylist} trackItems={this.props.trackItems} setSongUrl={this.props.setSongUrl} title={this.state.title} image={this.state.image} onBackClicked={this.onBackClicked} />
+                    <PlayInfo songsChanged={this.state.songsChanged} removeSongFromPlaylist={this.removeSongFromPlaylist} imageUpdater={this.imageUpdater} pid={this.state.pid} uid={this.props.currentUser.id} addSongToPlaylist={this.addSongToPlaylist} trackItems={this.props.trackItems} setSongUrl={this.props.setSongUrl} title={this.state.title} image={this.state.image} onBackClicked={this.onBackClicked} />
                 }
                 <div className="ui divider"></div>
             </div>

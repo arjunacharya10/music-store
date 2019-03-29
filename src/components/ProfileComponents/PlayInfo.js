@@ -10,6 +10,7 @@ class PlayInfo extends React.Component{
     state={
         currentRoute: 'songlist',
         plsongs:[],
+        removedSong: 'id'
     }
     
     onRouteChange=(route)=>{
@@ -69,7 +70,116 @@ class PlayInfo extends React.Component{
                             if(sdata[j].sid === curid){
                                 song.push(sdata[j].name);
                             }
-                            else{
+                            else{axios.post('http://localhost:3000/get-songs',{
+                                pid: this.props.pid,
+                                uid: this.props.uid
+                            })
+                            .then(psongs=>{
+                                var sdata = psongs.data
+                                        var songs=[];
+                                        for(var i=0;i<psongs.data.length;i++){
+                                            var song=[];
+                                            var curid = sdata[i].sid;
+                                            for(var j=i;j<sdata.length;j++){
+                                                if(sdata[j].sid === curid){
+                                                    song.push(sdata[j].name);
+                                                }
+                                                else{
+                                                    break;
+                                                }
+                                            }
+                                            i=j-1;
+                                            songs.push({
+                                                id: sdata[i].sid,
+                                                trackName: sdata[i].sname,
+                                                link: sdata[i].link,
+                                                image: sdata[i].image,
+                                                artistNames: song
+                                            })
+                                        }
+                                        console.log(songs);
+                                        this.setState({plsongs:songs});
+                                        if(songs.length){
+                                            this.props.imageUpdater(songs[0].image);
+                                        }
+                            })
+                            .catch(err=>{
+                                console.log(err);
+                            })
+                                break;
+                            }
+                        }
+                        i=j-1;
+                        songs.push({
+                            id: sdata[i].sid,
+                            trackName: sdata[i].sname,
+                            link: sdata[i].link,
+                            image: sdata[i].image,
+                            artistNames: song
+                        })
+                    }
+                    console.log(songs);
+                    this.setState({plsongs:songs});
+                    if(songs.length){
+                        this.props.imageUpdater(songs[0].image);
+                    }
+        })
+        .catch(err=>{
+            console.log(err);
+        })
+    }
+
+    songListChanged=(res)=>{
+        axios.post('http://localhost:3000/get-songs',{
+            pid: this.props.pid,
+            uid: this.props.uid
+        })
+        .then(psongs=>{
+            var sdata = psongs.data
+                    var songs=[];
+                    for(var i=0;i<psongs.data.length;i++){
+                        var song=[];
+                        var curid = sdata[i].sid;
+                        for(var j=i;j<sdata.length;j++){
+                            if(sdata[j].sid === curid){
+                                song.push(sdata[j].name);
+                            }
+                            else{axios.post('http://localhost:3000/get-songs',{
+                                pid: this.props.pid,
+                                uid: this.props.uid
+                            })
+                            .then(psongs=>{
+                                var sdata = psongs.data
+                                        var songs=[];
+                                        for(var i=0;i<psongs.data.length;i++){
+                                            var song=[];
+                                            var curid = sdata[i].sid;
+                                            for(var j=i;j<sdata.length;j++){
+                                                if(sdata[j].sid === curid){
+                                                    song.push(sdata[j].name);
+                                                }
+                                                else{
+                                                    break;
+                                                }
+                                            }
+                                            i=j-1;
+                                            songs.push({
+                                                id: sdata[i].sid,
+                                                trackName: sdata[i].sname,
+                                                link: sdata[i].link,
+                                                image: sdata[i].image,
+                                                artistNames: song
+                                            })
+                                        }
+                                        console.log(songs);
+                                        this.setState({plsongs:songs});
+                                        if(songs.length){
+                                            this.props.imageUpdater(songs[0].image);
+                                        }
+                            })
+                            .catch(err=>{
+                                console.log(err);
+                            })
                                 break;
                             }
                         }
@@ -101,7 +211,7 @@ class PlayInfo extends React.Component{
     render()
         {
                 const allsongs = this.state.plsongs.map(song=>{
-                    return (<SongPlayList key={song.id} song={song} setSongUrl={this.props.setSongUrl}/>)
+                    return (<SongPlayList songListChanged={this.songListChanged} removeSongFromPlaylist={this.props.removeSongFromPlaylist} key={song.id} song={song} setSongUrl={this.props.setSongUrl}/>)
                 });
 
 
