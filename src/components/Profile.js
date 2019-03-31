@@ -10,7 +10,8 @@ class Profile extends React.Component {
 
     state={
         currentRoute:'profile',
-        clicked:false
+        clicked:false,
+        users: ''
     }
 
     onRouteChange=(route)=>{
