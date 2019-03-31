@@ -26,7 +26,9 @@ class MainMenu extends React.Component{
         purchasedSongs: [],
         songid: '',
         played: [],
-        cursongi: 0
+        cursongi: 0,
+        follwingId:[],
+        followersId:[]
     };
     onRouteChange = (route)=>{
         this.setState({currentRoute: route});
@@ -73,7 +75,20 @@ class MainMenu extends React.Component{
                 })
         this.setState({access_token: this.props.access_token});
         this.setState({user:this.props.currentUser});
+        axios.post('http://localhost:3000/get-following',{
+            uid:this.state.user.id
+        })
+        .then(resp=>{
+            this.setState({follwingId:resp.data.fing,followersId:resp.data.fers});
+        })
+        .catch(err=>{
+            console.log(err);
+        })
         console.log(this.state.access_token);
+    }
+
+    updateFollowing=(fing,fers)=>{
+        this.setState({followingId:fing,followersId:fers});
     }
 
     updateCart=(track,trackCost)=>{
@@ -171,7 +186,7 @@ class MainMenu extends React.Component{
                 <div>
                     <SideNav onRouteChange={this.onRouteChange} currentUser={this.props.currentUser} onSignOut={this.props.onSignOut}/>
                         <div className="main" style={{marginRight:'1000px'}}>
-                            <Profile currentUser={this.props.currentUser} trackItems = {this.state.purchasedSongs} setSongUrl={this.setSongUrl}/>
+                            <Profile followersId={this.state.followersId} followingId={this.state.follwingId} updateFollowing={this.updateFollowing} currentUser={this.props.currentUser} trackItems = {this.state.purchasedSongs} setSongUrl={this.setSongUrl}/>
                         </div>
                         { this.state.songid?
                         <FooterComp songid={this.state.songid} clickNextPrev={this.clickNextPrev}/>:

@@ -15,20 +15,20 @@ const ProfileTop = (props)=>{
                         <div className="four wide column">
                             <div>
                                 <h1 style={{textAlign: 'center',color: 'aliceblue'}}>Followers</h1>
-                                <h3 style={{textAlign: 'center',color: 'aliceblue'}}>200k</h3>
+                                <h3 style={{textAlign: 'center',color: 'aliceblue'}}>{props.followers}</h3>
                             </div>
                         </div>
                         <div className="four wide column curcular image">
                         <div>
                                 <h1 style={{textAlign: 'center',color: 'aliceblue'}}>Following</h1>
-                                <h3 style={{textAlign: 'center',color: 'aliceblue'}}>200k</h3>
+                                <h3 style={{textAlign: 'center',color: 'aliceblue'}}>{props.following}</h3>
                             </div>
                         </div>
                         <div className="four wide column curcular image">
                         <div>
-                                <h1 style={{textAlign: 'center',color: 'aliceblue'}}>Hits</h1>
-                                <h3 style={{textAlign: 'center',color: 'aliceblue'}}>200k</h3>
-                            </div>
+                                <h1 style={{textAlign: 'center',color: 'aliceblue'}}></h1>
+                                <h3 style={{textAlign: 'center',color: 'aliceblue'}}></h3>
+                        </div>
                         </div>
                     </div>
                 </div>
@@ -39,3 +39,10 @@ const ProfileTop = (props)=>{
 }
 
 export default ProfileTop;
+
+/*{<div className="four wide column curcular image">}
+                        <div>
+                                <h1 style={{textAlign: 'center',color: 'aliceblue'}}>Hits</h1>
+                                <h3 style={{textAlign: 'center',color: 'aliceblue'}}>200k</h3>
+                            </div>
+                        </div>*/
