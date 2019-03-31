@@ -81,7 +81,7 @@ class SideNav extends React.Component{
     render()
     {
             return(
-            <div className="sidenav" style={{fontFamily: '\'Singlet\',cursive'}}>
+            <div className="sidenav">
                         <HomeLogo onRouteChange={this.props.onRouteChange}/><br/><br/>
                         <a style={this.state.active.b1?{color: '#67ce63'}:{color:'#818181'}} onClick={()=>{this.onHomeClick();this.props.onRouteChange('home');}} href="#"><i className="icon home">&nbsp;&nbsp;Home</i></a><br/>
                         <a style={this.state.active.b2?{color: '#67ce63'}:{color:'#818181'}} onClick={()=>{this.onSearchClick();this.props.onRouteChange('search');}} href="#"><i className="icon search">&nbsp;&nbsp;Search</i></a><br/>
