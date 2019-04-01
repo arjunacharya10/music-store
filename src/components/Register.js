@@ -16,7 +16,8 @@ class Register extends React.Component{
         axios.post('http://localhost:3000/register',{
             name: this.state.name,
             email: this.state.email,
-            password: this.state.password
+            password: this.state.password,
+            avatar: 'https://api.adorable.io/avatars/285/'+this.state.name
         })
         .then(res=>{
             console.log(res);

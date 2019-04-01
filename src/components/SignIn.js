@@ -9,6 +9,7 @@ import Register from './Register';
 import Spotify from './Spotify';
 
 import Home from '../video/home.mp4';
+import Axios from 'axios';
 
 firebase.initializeApp({
   apiKey: 'AIzaSyAhxq9NsmapW_Ou5a_yr0DKFfhKHCZXBDg',
@@ -88,6 +89,12 @@ class SignIn extends Component {
           email: user.email,
           avatar: user.photoURL
         }});
+        Axios.post('http://localhost:3000/google-register',{
+          name:user.displayName,
+          email:user.email,
+          avatar:user.photoURL,
+          password:'default'
+        })
       }
     })
   }
