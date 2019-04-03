@@ -200,7 +200,7 @@ class MainMenu extends React.Component{
                 <div>
                     <SideNav onRouteChange={this.onRouteChange} onSignOut={this.props.onSignOut} currentUser={this.props.currentUser}/>
                         <div className="main" style={{marginRight:'1000px'}}>
-                            <HomeScreen/>
+                        <HomeScreen userId={this.props.currentUser.id}/>
                         </div>
                         { this.state.songid?
                         <FooterComp songid={this.state.songid} clickNextPrev={this.clickNextPrev}/>:

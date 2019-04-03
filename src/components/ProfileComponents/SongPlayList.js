@@ -24,7 +24,7 @@ const SongPlayList = ({song,setSongUrl,removeSongFromPlaylist,songListChanged})=
                     <p style={{color:'grey'}}>{artists}</p>
                 </div>
                 <div className="column" style={{paddingLeft:'20px'}}>
-                    <h2 onClick={()=>{removeSongFromPlaylist(song.id);songListChanged()}}  style={{cursor:'pointer',color:'white'}}>X</h2>
+                    <h2 onClick={()=>{removeSongFromPlaylist(song.id);songListChanged()}}  style={{cursor:'pointer',color:'white'}}>x</h2>
                 </div>
             </div>
         </div>
