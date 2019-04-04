@@ -65,7 +65,7 @@ class SigninForm extends React.Component{
                             </div>
                             <div class="lh-copy mt3">
                                 <div onClick={()=>this.props.onRouteChange('register')} href="#0" class="f6 link dim black db" style={{cursor: 'pointer'}}>Sign up</div>
-                                <a href="#0" class="f6 link dim black db">Forgot your password?</a>
+                                
                             </div>
                             </form>
 
