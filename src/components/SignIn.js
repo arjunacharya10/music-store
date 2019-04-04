@@ -84,17 +84,28 @@ class SignIn extends Component {
     firebase.auth().onAuthStateChanged(user =>{
       this.setState({isSignedIn: !!user});
       if(this.state.isSignedIn){
-        this.setState({currentUser:{
-          name: user.displayName,
-          email: user.email,
-          avatar: user.photoURL
-        }});
         Axios.post('http://localhost:3000/google-register',{
           name:user.displayName,
           email:user.email,
           avatar:user.photoURL,
           password:'default'
         })
+        .then(resp=>{
+          this.setState({currentUser:{
+            name: resp.data.name,
+            email: resp.data.email,
+            avatar: resp.data.avatar,
+            id: resp.data.id
+          }})
+        })
+        .catch(err=>{
+          console.log(err);
+        })
+        this.setState({currentUser:{
+          name: user.displayName,
+          email: user.email,
+          avatar: user.photoURL
+        }});
       }
     })
   }

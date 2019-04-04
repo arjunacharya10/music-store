@@ -149,6 +149,7 @@ class Playlists extends React.Component{
             return(
             <div style={{marginTop:'50px'}} className="ui container center">
                 <h1 style={{color:'white'}}>Playlists:</h1>
+                <p style={{color:'grey'}}>If you want to make your playlist available to your followers, create a playlist called My Story and add songs to it.</p>
                 {
                     this.state.currentRoute==='listdata'?
                     <ListData  onImageClicked={this.onImageClicked} playlists={this.state.playlists} onPlaylistSubmit={this.onPlaylistSubmit} onRemovePlaylist={this.onRemovePlaylist}/>

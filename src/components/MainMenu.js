@@ -91,6 +91,37 @@ class MainMenu extends React.Component{
         this.setState({followingId:fing,followersId:fers});
     }
 
+    updateFollowerSongs=(fid)=>{
+        axios.post('http://localhost:3000/get-follower-songs',{
+            uid:this.props.currentUser.id,
+            fid:fid
+        })
+        .then(psongs=>{
+            var sdata = psongs.data
+                    var songs=[];
+                    for(var i=0;i<psongs.data.length;i++){
+                        var song=[];
+                        var curid = sdata[i].sid;
+                        for(var j=i;j<sdata.length;j++){
+                            if(sdata[j].sid === curid){
+                                song.push(sdata[j].name);
+                            }
+                            else{
+                                break;
+                            }
+                        }
+                        i=j-1;
+                        songs.push(sdata[i].sid)
+                    }
+                    console.log(songs);
+                if(songs.length)
+                this.setState({played:songs,songid:songs[0]});
+        })
+        .catch(err=>{
+            console.log(err);
+        })
+    }
+
     updateCart=(track,trackCost)=>{
         track.cost = trackCost;
         const currentCart = this.state.cart;
@@ -125,6 +156,7 @@ class MainMenu extends React.Component{
             ind = this.state.played.length-1;
         else
             ind = (ind+val)%this.state.played.length;
+        console.log(this.state.played[ind]);
         this.setState({songid:this.state.played[ind],cursongi:ind});
     }
 
@@ -200,7 +232,7 @@ class MainMenu extends React.Component{
                 <div>
                     <SideNav onRouteChange={this.onRouteChange} onSignOut={this.props.onSignOut} currentUser={this.props.currentUser}/>
                         <div className="main" style={{marginRight:'1000px'}}>
-                        <HomeScreen userId={this.props.currentUser.id}/>
+                        <HomeScreen updateFollowerSongs={this.updateFollowerSongs} access_token={this.state.access_token} currentUser={this.props.currentUser} following={this.state.follwingId} userId={this.props.currentUser.id}/>
                         </div>
                         { this.state.songid?
                         <FooterComp songid={this.state.songid} clickNextPrev={this.clickNextPrev}/>:

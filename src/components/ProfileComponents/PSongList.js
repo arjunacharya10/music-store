@@ -23,7 +23,7 @@ const PSongList =({track,setSongUrl,addSongToPlaylist})=>{
 				<h2>{trackName} </h2>
 				<p>{artistNames}&nbsp;&nbsp;&nbsp;&nbsp;</p>
 			</div>
-		</div>
+		    </div>
     );
 }
 
