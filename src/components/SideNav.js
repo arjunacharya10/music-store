@@ -88,8 +88,8 @@ class SideNav extends React.Component{
                         <a style={this.state.active.b3?{color: '#ffffff',fontFamily: '\'Lato\', sans-serif'}:{color:'#818181',fontFamily: '\'Lato\', sans-serif'}} onClick={()=>{this.onLibClick();this.props.onRouteChange('cart');}} href="#"><i className="icon cart">&nbsp;&nbsp;Cart</i></a><br/>
                         
                         <div className="line"></div>
-                        <a style={this.state.active.b4?{color: '#ffffff',fontFamily: '\'Lato\', sans-serif'}:{color:'#818181',fontFamily: '\'Lato\', sans-serif'}} style={{marginTop: '200px'}} href="#"><i className="icon">&nbsp;&nbsp;About</i></a><br/>
-                        <a style={this.state.active.b5?{color: '#ffffff',fontFamily: '\'Lato\', sans-serif'}:{color:'#818181',fontFamily: '\'Lato\', sans-serif'}} href="#"><i className="icon">&nbsp;&nbsp;Contact</i></a><br/><br/><br/>
+                        <a style={this.state.active.b4?{color: '#ffffff',fontFamily: '\'Lato\', sans-serif'}:{color:'#818181',fontFamily: '\'Lato\', sans-serif'}} onClick={()=>{this.onAboutClick();this.props.onRouteChange('about');}} style={{marginTop: '200px'}} href="#"><i className="icon">&nbsp;&nbsp;About</i></a><br/>
+                        <a style={this.state.active.b5?{color: '#ffffff',fontFamily: '\'Lato\', sans-serif'}:{color:'#818181',fontFamily: '\'Lato\', sans-serif'}} onClick={()=>{this.onContactClick();this.props.onRouteChange('contact');}} href="#"><i className="icon">&nbsp;&nbsp;Contact</i></a><br/><br/><br/>
                         <a style={this.state.active.b6?{color: '#ffffff',fontFamily: '\'Lato\', sans-serif'}:{color:'#818181',fontFamily: '\'Lato\', sans-serif'}} onClick={()=>{this.onProfileClick();this.props.onRouteChange('profile');}} href="#"><img className="ui mini avatar image" src={this.props.currentUser.avatar}/>&nbsp;&nbsp;{this.props.currentUser.name}</a><br/><br/><br/>
                         <div className="signout" onClick={()=>{
                             var res = window.confirm('Are you sure?');
@@ -107,5 +107,6 @@ class SideNav extends React.Component{
 /*var res = window.confirm('Are you sure?');
                         if(res){
                             firebase.auth().signOut();
+                            <a style={this.state.active.b5?{color: '#ffffff',fontFamily: '\'Lato\', sans-serif'}:{color:'#818181',fontFamily: '\'Lato\', sans-serif'}} href="#"><i className="icon">&nbsp;&nbsp;Contact</i></a><br/><br/><br/>
                         }*/
 export default SideNav;

@@ -11,6 +11,8 @@ import SearchList from './SearchList';
 import CartMain from './Cart/CartMain';
 import axios from 'axios';
 import FooterComp from './Footer/FooterComp';
+import About from './About';
+import Contact from './Contact';
 
 
 class MainMenu extends React.Component{
@@ -33,6 +35,8 @@ class MainMenu extends React.Component{
     onRouteChange = (route)=>{
         this.setState({currentRoute: route});
     }
+
+    
 
     componentDidMount(){
         this.setState({user:this.props.currentUser});
@@ -232,7 +236,7 @@ class MainMenu extends React.Component{
                 <div>
                     <SideNav onRouteChange={this.onRouteChange} onSignOut={this.props.onSignOut} currentUser={this.props.currentUser}/>
                         <div className="main" style={{marginRight:'1000px'}}>
-                        <HomeScreen updateFollowerSongs={this.updateFollowerSongs} access_token={this.state.access_token} currentUser={this.props.currentUser} following={this.state.follwingId} userId={this.props.currentUser.id}/>
+                        <HomeScreen trackItems={this.state.purchasedSongs} setSongUrl={this.setSongUrl} updateFollowerSongs={this.updateFollowerSongs} access_token={this.state.access_token} currentUser={this.props.currentUser} following={this.state.follwingId} userId={this.props.currentUser.id}/>
                         </div>
                         { this.state.songid?
                         <FooterComp songid={this.state.songid} clickNextPrev={this.clickNextPrev}/>:
@@ -261,6 +265,32 @@ class MainMenu extends React.Component{
                     <SideNav onRouteChange={this.onRouteChange} currentUser={this.props.currentUser} onSignOut={this.props.onSignOut}/>
                         <div className="main" style={{marginRight:'1000px'}}>
                             <CartMain cartList={this.state.cart} removeFromCart={this.removeFromCart} cartCost={this.state.cartCost} onBuySongs={this.onBuySongs}/>
+                        </div>
+                        { this.state.songid?
+                        <FooterComp songid={this.state.songid} clickNextPrev={this.clickNextPrev}/>:
+                        <div></div>}
+                </div>
+            );
+        }
+        else if(this.state.currentRoute==='about'){
+            return(
+                <div>
+                    <SideNav onRouteChange={this.onRouteChange} currentUser={this.props.currentUser} onSignOut={this.props.onSignOut}/>
+                        <div className="main" style={{marginRight:'1000px'}}>
+                            <About/>
+                        </div>
+                        { this.state.songid?
+                        <FooterComp songid={this.state.songid} clickNextPrev={this.clickNextPrev}/>:
+                        <div></div>}
+                </div>
+            );
+        }
+        else if(this.state.currentRoute==='contact'){
+            return(
+                <div>
+                    <SideNav onRouteChange={this.onRouteChange} currentUser={this.props.currentUser} onSignOut={this.props.onSignOut}/>
+                        <div className="main" style={{marginRight:'1000px'}}>
+                            <Contact currentUser={this.props.currentUser}/>
                         </div>
                         { this.state.songid?
                         <FooterComp songid={this.state.songid} clickNextPrev={this.clickNextPrev}/>:

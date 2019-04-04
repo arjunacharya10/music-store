@@ -3,6 +3,7 @@ import axios from 'axios';
 import Following from './HomeScreen/Following';
 import Recom from './HomeScreen/Recom';
 import Spotify from './apis/spot';
+import PurchasedSongs from './ProfileComponents/PurchasedSongs';
 
 
 class HomeScreen extends React.Component{
@@ -13,7 +14,6 @@ class HomeScreen extends React.Component{
     }
 
     async componentDidMount(){
-        console.log(this.props.access_token);
         axios.post('http://localhost:3000/get-name',{
             uid: this.props.currentUser.id
         })
@@ -29,7 +29,7 @@ class HomeScreen extends React.Component{
                 Authorization: `Bearer ${this.props.access_token}`
             },
             params:{
-                type: 'artists'
+                type: 'tracks'
             }
         })
         .then(res=>{
@@ -42,10 +42,14 @@ class HomeScreen extends React.Component{
     render(){
         return(
             <div>
-                <div>
+                <div >
                     <Following updateFollowerSongs={this.props.updateFollowerSongs} finfo={this.state.finfo} following={this.props.following}/>
                 </div>
-                <Recom/>
+                <div style={{width:'1700px'}}>
+                    <div>
+                    <PurchasedSongs trackItems={this.props.trackItems} setSongUrl={this.props.setSongUrl}/>
+                    </div>
+                </div>
             </div>
         );
     }

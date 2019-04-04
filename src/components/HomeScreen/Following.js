@@ -9,8 +9,7 @@ const Following=({finfo,updateFollowerSongs})=>{
 
 
     return(
-        <div>
-            <h2 style={{color:'white',padding:'20px'}}>Stories:</h2>
+        <div style={{background:'#351C4D'}}>
             <div>{users}</div>
             <div class="ui divider"></div>
         </div>

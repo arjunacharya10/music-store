@@ -16,7 +16,7 @@ return(
             redirectUri={redirectUri}
             onSuccess={onSuccess}
             onFailure={onFailure}
-            scope="user-read-private"
+            scope="user-read-private,user-top-read"
             buttonText = "Authorise"/>
         </div>
     );

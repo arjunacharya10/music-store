@@ -74,8 +74,7 @@ class Profile extends React.Component {
                     <div>
                         <ProfileTop following={this.state.following.length} followers={this.state.followers.length} currentUser={this.props.currentUser}/>
                         <Playlists trackItems={this.props.trackItems} setSongUrl={this.props.setSongUrl} currentUser={this.props.currentUser}/>
-                        <h2 style={{color:'white'}}>Purchased Songs:</h2>
-                        <PurchasedSongs trackItems={this.props.trackItems} setSongUrl={this.props.setSongUrl}/>
+                        
                     </div>    
                 :
                     <SearchUsers onUnFollow={this.onUnFollow} onFollow={this.onFollow} following={this.state.following} users={this.state.users}/>
