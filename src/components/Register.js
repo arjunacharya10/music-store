@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import pw from 'password-validator';
 //import console = require('console');
 
 class Register extends React.Component{
@@ -10,25 +11,48 @@ class Register extends React.Component{
         password: ''
     };
 
+    
+
 
     onFormSubmit=(event)=>{
+
+        var schema = new pw();
+
+        schema
+        .is().min(8)                                    // Minimum length 8
+        .is().max(100)                                  // Maximum length 100
+        .has().uppercase()                              // Must have uppercase letters
+        .has().lowercase()                              // Must have lowercase letters
+        .has().digits()                                 // Must have digits
+        .has().not().spaces()                           // Should not have spaces
+        .is().not().oneOf(['Passw0rd', 'Password123']);
+
         event.preventDefault();
-        axios.post('http://localhost:3000/register',{
-            name: this.state.name,
-            email: this.state.email,
-            password: this.state.password,
-            avatar: 'https://api.adorable.io/avatars/285/'+this.state.name
-        })
-        .then(res=>{
-            console.log(res);
-            if(res.data==='success'){
-                alert('Registered Successfully! please Signin to continue..')
-                this.props.onRouteChange('signin');
-            }
-        })
-        .catch(err=>{
-            alert('User Already exists! Please signin..');
-        });
+
+        
+        if(schema.validate(this.state.password))
+
+        {
+                axios.post('http://localhost:3000/register',{
+                name: this.state.name,
+                email: this.state.email,
+                password: this.state.password,
+                avatar: 'https://api.adorable.io/avatars/285/'+this.state.name
+            })
+            .then(res=>{
+                console.log(res);
+                if(res.data==='success'){
+                    alert('Registered Successfully! please Signin to continue..')
+                    this.props.onRouteChange('signin');
+                }
+            })
+            .catch(err=>{
+                alert('User Already exists! Please signin..');
+            });
+        }
+        else{
+            window.alert('Password not strong!')
+        }
     }
 
     onNameChange=(event)=>{
