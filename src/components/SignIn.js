@@ -7,6 +7,8 @@ import './SignIn.css';
 import SigninForm from './SigninForm';
 import Register from './Register';
 import Spotify from './Spotify';
+import AdminForm from './AdminForm';
+import AdminMain from './AdminMain';
 
 import Home from '../video/home.mp4';
 import Axios from 'axios';
@@ -28,8 +30,13 @@ class SignIn extends Component {
     },
     currenRoute: 'signin',
     spotifyAuth: false,
-    access_token: ''
+    access_token: '',
+    allSongs:[]
   };
+
+  updateAllSongs=(songs)=>{
+    this.setState({allSongs:songs});
+  }
 
   onRouteChange=(route)=>{
       this.setState({currenRoute: route});
@@ -132,7 +139,7 @@ class SignIn extends Component {
                       </video>
                   </div>
                   <div className="ui container" style={{position:'relative',color:'#f1f1f1',marginTop: '30px',maxWidth: '100px'}}>
-  
+                      
                       <SigninForm onRouteChange = {this.onRouteChange} updateSignedIn={this.updateSignedIn}/>
 
                       <StyledFirebaseAuth
@@ -150,6 +157,16 @@ class SignIn extends Component {
       return(
         <Register onRouteChange={this.onRouteChange}/>
       );
+    }
+    else if(this.state.currenRoute==='adminmain'){
+      return(
+        <AdminMain allSongs={this.state.allSongs}/>
+      );
+    }
+    else if (this.state.currenRoute==='admin'){
+      return(
+        <AdminForm updateAllSongs={this.updateAllSongs} onRouteChange={this.onRouteChange}/>
+      )
     }
     else{
       return(
