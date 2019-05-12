@@ -84,7 +84,7 @@ class SignIn extends Component {
     firebase.auth().onAuthStateChanged(user =>{
       this.setState({isSignedIn: !!user});
       if(this.state.isSignedIn){
-        Axios.post('http://localhost:3000/google-register',{
+        Axios.post('https://online-music-store-server.herokuapp.com/google-register',{
           name:user.displayName,
           email:user.email,
           avatar:user.photoURL,

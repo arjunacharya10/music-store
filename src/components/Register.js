@@ -33,7 +33,7 @@ class Register extends React.Component{
         if(schema.validate(this.state.password))
 
         {
-                axios.post('http://localhost:3000/register',{
+                axios.post('https://online-music-store-server.herokuapp.com/register',{
                 name: this.state.name,
                 email: this.state.email,
                 password: this.state.password,

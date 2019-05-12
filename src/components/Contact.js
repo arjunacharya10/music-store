@@ -19,7 +19,7 @@ class Contact extends React.Component{
 
     onMessageSubmit=(event)=>{
         event.preventDefault();
-        axios.post('http://localhost:3000/feedback',{
+        axios.post('https://online-music-store-server.herokuapp.com/feedback',{
             uid:this.props.currentUser.id,
             subject:this.state.subject,
             message:this.state.message
