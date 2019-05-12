@@ -4,7 +4,7 @@ import FollowCard from './FollowCard';
 const Following=({finfo,updateFollowerSongs})=>{
 
     const users=finfo.map(user=>{
-        return(<FollowCard updateFollowingSongs={updateFollowerSongs} key={user.ID} user={user}/>);
+        return(<FollowCard updateFollowingSongs={updateFollowerSongs} key={user.id} user={user}/>);
     })
 
 

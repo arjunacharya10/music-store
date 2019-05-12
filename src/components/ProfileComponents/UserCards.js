@@ -8,12 +8,12 @@ const UserCards =({user,following,onFollow,onUnFollow})=>{
 
     var isFollowing=false;
     following.forEach(userid=>{
-        if(user.ID===userid){
+        if(user.id===userid){
             isFollowing=true;
         }
     })
 
-    var userName=user.NAME.length>20?user.NAME.slice(0,17)+'...':user.NAME;
+    var userName=user.name.length>20?user.name.slice(0,17)+'...':user.name;
 
     if(user)
     {
@@ -21,17 +21,17 @@ const UserCards =({user,following,onFollow,onUnFollow})=>{
             <a style={{color: 'white'}}>
                 <div className='tc  dib br3 pa3 ma2'>
                 <div className="grow">
-                    <img width="300px" height="300px"  src={user.AVATAR}  alt="robots"/>
+                    <img width="300px" height="300px"  src={user.avatar}  alt="robots"/>
                 </div>
                 <div>
                     <h2>{userName}</h2>
                 </div>
-                <p style={{color:'grey'}}>{user.EMAIL}</p>
+                <p style={{color:'grey'}}>{user.email}</p>
                 {isFollowing?
-                    <button onClick={()=>{onUnFollow(user.ID)}} class="ui inverted red button">
+                    <button onClick={()=>{onUnFollow(user.id)}} class="ui inverted red button">
                         Unfollow
                     </button>:
-                    <button onClick={()=>{onFollow(user.ID)}} class="ui inverted blue button">
+                    <button onClick={()=>{onFollow(user.id)}} class="ui inverted blue button">
                         Follow
                     </button>
                 }
