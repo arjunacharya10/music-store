@@ -22,7 +22,7 @@ class Profile extends React.Component {
     }
 
     componentDidMount(){
-        axios.post('http://localhost:3000/users',{
+        axios.post('https://online-music-store-server.herokuapp.com/users',{
             id:this.props.currentUser.id
         })
         .then(data=>{
@@ -34,7 +34,7 @@ class Profile extends React.Component {
     }
 
     onFollow=(folid)=>{
-        axios.post('http://localhost:3000/follow',{
+        axios.post('https://online-music-store-server.herokuapp.com/follow',{
             uid:this.props.currentUser.id,
             fid:folid
         })
@@ -49,7 +49,7 @@ class Profile extends React.Component {
     }
     
     onUnFollow=(folid)=>{
-        axios.post('http://localhost:3000/un-follow',{
+        axios.post('https://online-music-store-server.herokuapp.com/un-follow',{
             uid:this.props.currentUser.id,
             fid:folid
         })

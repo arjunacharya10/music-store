@@ -7,7 +7,7 @@ class AdminMain extends React.Component{
     
 
     componentDidMount(){
-        axios.get('http://localhost:3000/allsongs')
+        axios.get('https://online-music-store-server.herokuapp.com/allsongs')
     .then(songs=>{
         this.setState({songl:songs.data});
     });

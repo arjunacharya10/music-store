@@ -21,14 +21,14 @@ class Playlists extends React.Component{
 
     onRemovePlaylist=(id)=>{
         console.log(id);
-        axios.post('http://localhost:3000/delete-playlist',{
+        axios.post('https://online-music-store-server.herokuapp.com/delete-playlist',{
             uid: this.props.currentUser.id,
             pid: id
         })
         .then(res=>{
             console.log(res);
             if(res.data==='success'){
-                    axios.post('http://localhost:3000/get-playlist',{
+                    axios.post('https://online-music-store-server.herokuapp.com/get-playlist',{
                         id: this.props.currentUser.id,
                     })
                     .then(pl=>{
@@ -56,7 +56,7 @@ class Playlists extends React.Component{
     }
 
     addSongToPlaylist=(sid)=>{
-        axios.post('http://localhost:3000/add-to-playlist',{
+        axios.post('https://online-music-store-server.herokuapp.com/add-to-playlist',{
             pid: this.state.pid,
             sid: sid
         }).then(res=>{
@@ -69,7 +69,7 @@ class Playlists extends React.Component{
 
     onPlaylistSubmit=(termVal)=>{
         if(termVal){
-            axios.post('http://localhost:3000/create-playlist',{
+            axios.post('https://online-music-store-server.herokuapp.com/create-playlist',{
                 id: this.props.currentUser.id,
                 name: termVal
             })
@@ -83,7 +83,7 @@ class Playlists extends React.Component{
         }
     }
     /*componentDidUpdate=()=>{
-        axios.post('http://localhost:3000/get-playlist',{
+        axios.post('https://online-music-store-server.herokuapp.com/get-playlist',{
                 id: this.props.currentUser.id,
             })
             .then(pl=>{
@@ -96,7 +96,7 @@ class Playlists extends React.Component{
     }*/
 
     removeSongFromPlaylist=(id)=>{
-        axios.post('http://localhost:3000/delete-from-playlist',{
+        axios.post('https://online-music-store-server.herokuapp.com/delete-from-playlist',{
             pid: this.state.pid,
             sid: id
         })
@@ -110,7 +110,7 @@ class Playlists extends React.Component{
     }
 
     componentDidMount=()=>{
-        axios.post('http://localhost:3000/get-playlist',{
+        axios.post('https://online-music-store-server.herokuapp.com/get-playlist',{
                 id: this.props.currentUser.id,
             })
             .then(pl=>{
@@ -124,13 +124,13 @@ class Playlists extends React.Component{
 
     imageUpdater=(url)=>{
         if(!this.state.image){
-            axios.post('http://localhost:3000/update-image',{
+            axios.post('https://online-music-store-server.herokuapp.com/update-image',{
                 pid:this.state.pid,
                 uid: this.props.currentUser.id,
                 link:url
             })
             .then(resp=>{
-                axios.post('http://localhost:3000/get-playlist',{
+                axios.post('https://online-music-store-server.herokuapp.com/get-playlist',{
                 id: this.props.currentUser.id,
                 })
                 .then(pl=>{

@@ -14,7 +14,7 @@ class PlayInfo extends React.Component{
     }
     
     onRouteChange=(route)=>{
-        axios.post('http://localhost:3000/get-songs',{
+        axios.post('https://online-music-store-server.herokuapp.com/get-songs',{
             pid: this.props.pid,
             uid: this.props.uid
         })
@@ -56,7 +56,7 @@ class PlayInfo extends React.Component{
 
 
     componentDidMount=()=>{
-        axios.post('http://localhost:3000/get-songs',{
+        axios.post('https://online-music-store-server.herokuapp.com/get-songs',{
             pid: this.props.pid,
             uid: this.props.uid
         })
@@ -70,7 +70,7 @@ class PlayInfo extends React.Component{
                             if(sdata[j].sid === curid){
                                 song.push(sdata[j].name);
                             }
-                            else{axios.post('http://localhost:3000/get-songs',{
+                            else{axios.post('https://online-music-store-server.herokuapp.com/get-songs',{
                                 pid: this.props.pid,
                                 uid: this.props.uid
                             })
@@ -130,7 +130,7 @@ class PlayInfo extends React.Component{
     }
 
     songListChanged=(res)=>{
-        axios.post('http://localhost:3000/get-songs',{
+        axios.post('https://online-music-store-server.herokuapp.com/get-songs',{
             pid: this.props.pid,
             uid: this.props.uid
         })
@@ -144,7 +144,7 @@ class PlayInfo extends React.Component{
                             if(sdata[j].sid === curid){
                                 song.push(sdata[j].name);
                             }
-                            else{axios.post('http://localhost:3000/get-songs',{
+                            else{axios.post('https://online-music-store-server.herokuapp.com/get-songs',{
                                 pid: this.props.pid,
                                 uid: this.props.uid
                             })

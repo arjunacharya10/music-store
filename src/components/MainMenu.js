@@ -41,7 +41,7 @@ class MainMenu extends React.Component{
     componentDidMount(){
         this.setState({user:this.props.currentUser});
         console.log(this.state.user);
-        axios.post('http://localhost:3000/send-purchased',{
+        axios.post('https://online-music-store-server.herokuapp.com/send-purchased',{
                     id: this.state.user.id
                 })
                 .then(psongs=>{
@@ -79,7 +79,7 @@ class MainMenu extends React.Component{
                 })
         this.setState({access_token: this.props.access_token});
         this.setState({user:this.props.currentUser});
-        axios.post('http://localhost:3000/get-following',{
+        axios.post('https://online-music-store-server.herokuapp.com/get-following',{
             uid:this.state.user.id
         })
         .then(resp=>{
@@ -96,7 +96,7 @@ class MainMenu extends React.Component{
     }
 
     updateFollowerSongs=(fid)=>{
-        axios.post('http://localhost:3000/get-follower-songs',{
+        axios.post('https://online-music-store-server.herokuapp.com/get-follower-songs',{
             uid:this.props.currentUser.id,
             fid:fid
         })
@@ -168,12 +168,12 @@ class MainMenu extends React.Component{
     onBuySongs=()=>{
         console.log(this.state.user);
         this.state.cart.forEach(song=>{
-            axios.post('http://localhost:3000/purchase',{
+            axios.post('https://online-music-store-server.herokuapp.com/purchase',{
                 song: song,
                 user: this.state.user
             })
             .then(res=>{
-                axios.post('http://localhost:3000/send-purchased',{
+                axios.post('https://online-music-store-server.herokuapp.com/send-purchased',{
                     id: this.state.user.id
                 })
                 .then(psongs=>{

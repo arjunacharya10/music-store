@@ -17,13 +17,13 @@ class AdminForm extends React.Component{
 
     onFormSubmit=(event)=>{
         event.preventDefault();
-        axios.post('http://localhost:3000/admin',{
+        axios.post('https://online-music-store-server.herokuapp.com/admin',{
             email:this.state.email,
             password:this.state.password
         })
         .then(resp =>{
             this.props.onRouteChange('adminmain');
-            axios.get('http://localhost:3000/allsongs')
+            axios.get('https://online-music-store-server.herokuapp.com/allsongs')
             .then(songl=>{
                 this.props.updateAllSongs(songl.data);
             })

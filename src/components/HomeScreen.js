@@ -14,7 +14,7 @@ class HomeScreen extends React.Component{
     }
 
     async componentDidMount(){
-        axios.post('http://localhost:3000/get-name',{
+        axios.post('https://online-music-store-server.herokuapp.com/get-name',{
             uid: this.props.currentUser.id
         })
         .then(resp=>{
