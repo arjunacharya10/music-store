@@ -15,6 +15,7 @@ class SearchUsers extends React.Component{
     onFormSubmit=(event)=>{
         event.preventDefault();
         const filteredUsers = this.props.users.filter(user=>{
+            console.log(user);
 			return user.name.toLowerCase().includes(this.state.term.toLowerCase());
         });
         this.setState({users:filteredUsers});

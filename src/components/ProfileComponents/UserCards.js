@@ -11,7 +11,7 @@ const UserCards =({user,following,onFollow,onUnFollow})=>{
         if(user.id===userid){
             isFollowing=true;
         }
-    })
+    });
 
     var userName=user.name.length>20?user.name.slice(0,17)+'...':user.name;
 
